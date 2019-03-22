@@ -68,7 +68,7 @@ class PokemonType:
       PokemonBaseType.Fairy: [PokemonBaseType.Poison, PokemonBaseType.Steel],
   }
 
-  strengths = {
+  resistances = {
       PokemonBaseType.Normal: [],
       PokemonBaseType.Fire: [PokemonBaseType.Fire, PokemonBaseType.Grass, PokemonBaseType.Ice, PokemonBaseType.Bug, PokemonBaseType.Steel, PokemonBaseType.Fairy],
       PokemonBaseType.Water: [PokemonBaseType.Fire, PokemonBaseType.Water, PokemonBaseType.Ice, PokemonBaseType.Steel],
@@ -110,14 +110,14 @@ class PokemonType:
       PokemonBaseType.Fairy: [PokemonBaseType.Dragon]
     }
 
-  def __init__(self, pokemontype):
-    if type(pokemontype) is not PokemonBaseType:
-      raise TypeError('input must be of class PokemonType')
-    self.type = pokemontype
+  def __init__(self, pokemontype1, pokemontype2=None):
+    if type(pokemontype1) is not PokemonBaseType:
+      raise TypeError('input must be of class PokemonBaseType')
+    #self.type = pokemontype
     self.name = self.type.name
     self.value = self.type.value
     self.weak = self.weaknesses[self.type]
-    self.strong = self.strengths[self.type]
+    self.strong = self.resistances[self.type]
     self.immune = self.immunities[self.type]
 
   def __str__(self):
@@ -201,3 +201,11 @@ class PokemonTypeSet:
 
 #normal_flying = PokemonTypeSet(pokemon_types["Normal"], pokemon_types["Flying"])
 #print('try: print(pokemon_types["Ground"])')
+if __name__ == '__main__':
+  import sys
+  if len(sys.argv) == 3:
+    print(PokemonType(PokemonBaseType[sys.argv[1]], PokemonBaseType[sys.argv[2]]))
+  elif len(sys.argv) == 2:
+    print(PokemonType(PokemonBaseType[sys.argv[1]]))
+  else:
+    print("usage: {} Type1 [Type2]".format(sys.argv[0]))
