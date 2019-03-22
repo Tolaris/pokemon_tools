@@ -5,6 +5,7 @@ from enum import Enum
 class PokemonBaseType(Enum):
   """An Enum representing a Pokemon type, such as 'Fire' or 'Water'."""
   # Types are ordered by in-game type order, and will sort/print in that order.
+  nothing = 0
   Normal = 1
   Fire = 2
   Water = 3
@@ -46,85 +47,60 @@ class PokemonBaseType(Enum):
   def __str__(self):
     return self.name
 
+# Defense matrix. 0 = normal damage, 1 = weak, -1 = strong, -2 = immune.
+# Build it the slow way because it's more readable for humans.
+# Build a dummy 0th row and column so we can add a "nothing" second type to a real
+# one and get logical results without special logic.
+defense = [None] * 19
+# HEADER                                  [ n,NO,FR,WA,EL,GR,IC,FG,PO,GR,FL,PS,BU,RO,GH,DR,DA,ST,FA]
+defense[PokemonBaseType.nothing.value] =  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+defense[PokemonBaseType.Normal.value] =   [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,-2, 0, 0, 0, 0]
+defense[PokemonBaseType.Fire.value] =     [ 0, 0,-1, 1, 0,-1,-1, 0, 0, 1, 0, 0,-1, 1, 0, 0, 0,-1,-1]
+defense[PokemonBaseType.Water.value] =    [ 0, 0,-1,-1, 1, 1,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-1, 0]
+defense[PokemonBaseType.Electric.value] = [ 0, 0, 0, 0,-1, 0, 0, 0, 0, 1,-1, 0, 0, 0, 0, 0, 0,-1, 0]
+defense[PokemonBaseType.Grass.value] =    [ 0, 0, 1,-1,-1,-1, 1, 0, 1,-1, 1, 0, 1, 0, 0, 0, 0, 0, 0]
+defense[PokemonBaseType.Ice.value] =      [ 0, 0, 1, 0, 0, 0,-1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0]
+defense[PokemonBaseType.Fighting.value] = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,-1,-1, 0, 0,-1, 0, 1]
+defense[PokemonBaseType.Poison.value] =   [ 0, 0, 0, 0, 0,-1, 0,-1,-1, 1, 0, 1,-1, 0, 0, 0, 0, 0,-1]
+defense[PokemonBaseType.Ground.value] =   [ 0, 0, 0, 1,-2, 1, 1, 0,-1, 0, 0, 0, 0,-1, 0, 0, 0, 0, 0]
+defense[PokemonBaseType.Flying.value] =   [ 0, 0, 0, 0, 1,-1, 1,-1, 0,-2, 0, 0,-1, 1, 0, 0, 0, 0, 0]
+defense[PokemonBaseType.Psychic.value] =  [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0, 0,-1, 1, 0, 1, 0, 1, 0, 0]
+defense[PokemonBaseType.Bug.value] =      [ 0, 0, 1, 0, 0,-1, 0,-1, 0,-1, 1, 0, 0, 1, 0, 0, 0, 0, 0]
+defense[PokemonBaseType.Rock.value] =     [ 0,-1,-1, 1, 0, 1, 0, 1,-1, 1,-1, 0, 0, 0, 0, 0, 0, 1, 0]
+defense[PokemonBaseType.Ghost.value] =    [ 0,-2, 0, 0, 0, 0, 0,-2,-1, 0, 0, 0,-1, 0, 1, 0, 1, 0, 0]
+defense[PokemonBaseType.Dragon.value] =   [ 0, 0,-1,-1,-1,-1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1]
+defense[PokemonBaseType.Dark.value] =     [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,-2, 1, 0,-1, 0,-1, 0, 1]
+defense[PokemonBaseType.Steel.value] =    [ 0,-1, 1, 0, 0,-1,-1, 1,-2, 1,-1,-1,-1,-1, 0,-1, 0,-1,-1]
+defense[PokemonBaseType.Fairy.value] =    [ 0, 0, 0, 0, 0, 0, 0,-1, 1, 0, 0, 0,-1, 0, 0,-2,-1, 1, 0]
 
-weaknesses = {
-    PokemonBaseType.Normal: set([PokemonBaseType.Fighting]),
-    PokemonBaseType.Fire: set([PokemonBaseType.Water, PokemonBaseType.Ground, PokemonBaseType.Rock]),
-    PokemonBaseType.Water: set([PokemonBaseType.Electric, PokemonBaseType.Grass]),
-    PokemonBaseType.Electric: set([PokemonBaseType.Ground]),
-    PokemonBaseType.Grass: set([PokemonBaseType.Fire, PokemonBaseType.Ice, PokemonBaseType.Poison, PokemonBaseType.Flying, PokemonBaseType.Bug]),
-    PokemonBaseType.Ice: set([PokemonBaseType.Fire, PokemonBaseType.Fighting, PokemonBaseType.Rock, PokemonBaseType.Steel]),
-    PokemonBaseType.Fighting: set([PokemonBaseType.Flying, PokemonBaseType.Psychic, PokemonBaseType.Fairy]),
-    PokemonBaseType.Poison: set([PokemonBaseType.Ground, PokemonBaseType.Psychic]),
-    PokemonBaseType.Ground: set([PokemonBaseType.Water, PokemonBaseType.Grass, PokemonBaseType.Ice]),
-    PokemonBaseType.Flying: set([PokemonBaseType.Electric, PokemonBaseType.Ice, PokemonBaseType.Rock]),
-    PokemonBaseType.Psychic: set([PokemonBaseType.Bug, PokemonBaseType.Ghost, PokemonBaseType.Dark]),
-    PokemonBaseType.Bug: set([PokemonBaseType.Fire, PokemonBaseType.Flying, PokemonBaseType.Rock]),
-    PokemonBaseType.Rock: set([PokemonBaseType.Water, PokemonBaseType.Grass, PokemonBaseType.Fighting, PokemonBaseType.Ground, PokemonBaseType.Steel]),
-    PokemonBaseType.Ghost: set([PokemonBaseType.Ghost, PokemonBaseType.Dark]),
-    PokemonBaseType.Dragon: set([PokemonBaseType.Ice, PokemonBaseType.Dragon, PokemonBaseType.Fairy]),
-    PokemonBaseType.Dark: set([PokemonBaseType.Fighting, PokemonBaseType.Bug, PokemonBaseType.Fairy]),
-    PokemonBaseType.Steel: set([PokemonBaseType.Fire, PokemonBaseType.Fighting, PokemonBaseType.Ground]),
-    PokemonBaseType.Fairy: set([PokemonBaseType.Poison, PokemonBaseType.Steel]),
-}
-
-resistances = {
-    PokemonBaseType.Normal: set([]),
-    PokemonBaseType.Fire: set([PokemonBaseType.Fire, PokemonBaseType.Grass, PokemonBaseType.Ice, PokemonBaseType.Bug, PokemonBaseType.Steel, PokemonBaseType.Fairy]),
-    PokemonBaseType.Water: set([PokemonBaseType.Fire, PokemonBaseType.Water, PokemonBaseType.Ice, PokemonBaseType.Steel]),
-    PokemonBaseType.Electric: set([PokemonBaseType.Electric, PokemonBaseType.Flying, PokemonBaseType.Steel]),
-    PokemonBaseType.Grass: set([PokemonBaseType.Water, PokemonBaseType.Electric, PokemonBaseType.Grass, PokemonBaseType.Ground]),
-    PokemonBaseType.Ice: set([PokemonBaseType.Ice]),
-    PokemonBaseType.Fighting: set([PokemonBaseType.Bug, PokemonBaseType.Rock, PokemonBaseType.Dark]),
-    PokemonBaseType.Poison: set([PokemonBaseType.Grass, PokemonBaseType.Fighting, PokemonBaseType.Poison, PokemonBaseType.Bug, PokemonBaseType.Fairy]),
-    PokemonBaseType.Ground: set([PokemonBaseType.Poison, PokemonBaseType.Rock]),
-    PokemonBaseType.Flying: set([PokemonBaseType.Grass, PokemonBaseType.Fighting, PokemonBaseType.Bug]),
-    PokemonBaseType.Psychic: set([PokemonBaseType.Fighting, PokemonBaseType.Psychic]),
-    PokemonBaseType.Bug: set([PokemonBaseType.Grass, PokemonBaseType.Fighting, PokemonBaseType.Ground]),
-    PokemonBaseType.Rock: set([PokemonBaseType.Normal, PokemonBaseType.Fire, PokemonBaseType.Poison, PokemonBaseType.Flying]),
-    PokemonBaseType.Ghost: set([PokemonBaseType.Poison, PokemonBaseType.Bug]),
-    PokemonBaseType.Dragon: set([PokemonBaseType.Fire, PokemonBaseType.Water, PokemonBaseType.Electric, PokemonBaseType.Grass]),
-    PokemonBaseType.Dark: set([PokemonBaseType.Ghost, PokemonBaseType.Dark]),
-    PokemonBaseType.Steel: set([PokemonBaseType.Normal, PokemonBaseType.Grass, PokemonBaseType.Ice, PokemonBaseType.Flying, PokemonBaseType.Psychic, PokemonBaseType.Bug, PokemonBaseType.Rock, PokemonBaseType.Dragon, PokemonBaseType.Steel, PokemonBaseType.Fairy]),
-    PokemonBaseType.Fairy: set([PokemonBaseType.Fighting, PokemonBaseType.Bug, PokemonBaseType.Dark]),
-}
-
-immunities = {
-    PokemonBaseType.Normal: set([PokemonBaseType.Ghost]),
-    PokemonBaseType.Fire: set([]),
-    PokemonBaseType.Water: set([]),
-    PokemonBaseType.Electric: set([]),
-    PokemonBaseType.Grass: set([]),
-    PokemonBaseType.Ice: set([]),
-    PokemonBaseType.Fighting: set([]),
-    PokemonBaseType.Poison: set([]),
-    PokemonBaseType.Ground: set([PokemonBaseType.Electric]),
-    PokemonBaseType.Flying: set([PokemonBaseType.Ground]),
-    PokemonBaseType.Psychic: set([]),
-    PokemonBaseType.Bug: set([]),
-    PokemonBaseType.Rock: set([]),
-    PokemonBaseType.Ghost: set([PokemonBaseType.Normal, PokemonBaseType.Fighting]),
-    PokemonBaseType.Dragon: set([]),
-    PokemonBaseType.Dark: set([]),
-    PokemonBaseType.Steel: set([PokemonBaseType.Poison]),
-    PokemonBaseType.Fairy: set([PokemonBaseType.Dragon])
-  }
+def _get_defense(defense_row,defense_value=0):
+  results = []
+  for i in range(len(defense_row)):
+    if defense_row[i] == defense_value:
+      results.append(PokemonBaseType(i))
+  return results
 
 class PokemonType:
-  global weaknesses, resistances, immunities
+  global defense
 
-  def __init__(self, type1, type2=None):
+  def __init__(self, type1, type2=PokemonBaseType["nothing"]):
     # TODO: check inputs. For now, assume two valid types as input
     if type(type1) is not PokemonBaseType:
       raise TypeError('input must be of class PokemonBaseType')
     if type(type2) is not PokemonBaseType :
       raise TypeError('input must be of class PokemonBaseType')
-    self.name = "{} / {}".format(type1.name, type2.name)
-    self.weak_2x = weaknesses[type1] & weaknesses[type2]
-    self.resist_3x = immunities[type1] & resistances[type2] | immunities[type2] & resistances[type1]
-    self.resist_2x = ((immunities[type1] ^ immunities[type2]) | (resistances[type1] & resistances[type2])) - self.resist_3x
-    self.resist_1x = (resistances[type1] | resistances[type2] | immunities[type1] & weaknesses[type2] | immunities[type2] & weaknesses[type1]) - self.resist_2x - self.resist_3x
-    self.weak_1x = weaknesses[type1] ^ weaknesses[type2] - self.resist_2x - self.resist_3x
+    if type2.name == "nothing":
+      self.name = type1.name
+    elif type1.name == "nothing":
+      self.name = type2.name
+    else:
+      self.name = "{} / {}".format(type1.name, type2.name)
+    self.defense = [defense[type1.value][x] + defense[type2.value][x] for x in range(len(defense[type1.value]))]
+    self.resist_3x = _get_defense(self.defense,-3)
+    self.resist_2x = _get_defense(self.defense,-2)
+    self.resist_1x = _get_defense(self.defense,-1)
+    self.weak_2x = _get_defense(self.defense,2)
+    self.weak_1x = _get_defense(self.defense,1)
 
   def __str__(self):
     return self.name
@@ -144,72 +120,14 @@ class PokemonType:
       output += "  Resistances:  {}\n".format(", ".join([str(i) for i in self.resist_1x]))
     return output
 
-class PokemonTypeSet:
-  """A class representing a pair of Pokemon types, such as 'Fire / Flying'."""
-
-  def __init__(self, type1=None, type2=None):
-    # validate inputs are both PokemonType
-    #   valid: PokemonType, PokemonType; PokemonType, None
-    # name
-    #   if one type, set to type.name
-    #   if two types, set to "type1.name / type2.name"
-    # for weak:
-    #   weak = set symmetric difference
-    #   weak_double = set intersection
-    # for each strong/immune, take set union of both types
-    # print method should print weak_double members first, each followed by " (2x)"
-    if type(type1) is not PokemonType:
-      raise TypeError('type1 must be of class PokemonType')
-    if type(type2) is not PokemonType:
-      raise TypeError('type1 must be of class PokemonType')
-
-    self.type1 = type1
-    if type2 is None:
-      self.type2 = None
-      self.name = type1.name
-      self.weak = type1.weak
-      self.weak_double = []
-      self.strong = type1.strong
-      self.immune = type1.immune
-      self.double_weak = []
-    else:
-      self.type2 = type2
-      self.name = "{} / {}".format(type1.name, type2.name)
-      self.weak = sorted(list(set(type1.weak) ^ set(type2.weak)))
-      self.weak_double = sorted(list(set(type1.weak) & set(type2.weak)))
-      self.strong = sorted(list(set(type1.strong) | set(type2.strong)))
-      self.immune = sorted(list(set(type1.immune) | set(type2.immune)))
-
-    self.weak_count = len(self.weak) + len(self.weak_double)*2
-    self.strong_count = len(self.strong) + len(self.immune)*2
-
-  def summary(self):
-    """Pretty-print a summary of a PokemonType."""
-    name = "Type: {}\n".format(self.name)
-    if self.weak or self.weak_double:
-      weaknesses = [str(i) + " (2x)" for i in self.weak_double]
-      #+ self.weak
-      weak = "  Weak to:   {}\n".format(", ".join(weaknesses))
-    else:
-      weak = ""
-    if self.strong:
-      strong = "  Strong to: {}\n".format(", ".join(self.strong))
-    else:
-      strong = ""
-    if self.immune:
-      immune = "  Immune to: {}\n".format(", ".join(self.immune))
-    else:
-      immune = ""
-    return (name + weak + strong + immune)
-
 
 #normal_flying = PokemonTypeSet(pokemon_types["Normal"], pokemon_types["Flying"])
 #print('try: print(pokemon_types["Ground"])')
 if __name__ == '__main__':
   import sys
   if len(sys.argv) == 3:
-    print(PokemonType(PokemonBaseType[sys.argv[1]], PokemonBaseType[sys.argv[2]]))
+    print(PokemonType(PokemonBaseType[sys.argv[1]], PokemonBaseType[sys.argv[2]]).summary())
   elif len(sys.argv) == 2:
-    print(PokemonType(PokemonBaseType[sys.argv[1]]))
+    print(PokemonType(PokemonBaseType[sys.argv[1]]).summary())
   else:
     print("usage: {} Type1 [Type2]".format(sys.argv[0]))
