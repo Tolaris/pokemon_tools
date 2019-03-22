@@ -46,99 +46,103 @@ class PokemonBaseType(Enum):
   def __str__(self):
     return self.name
 
+
+weaknesses = {
+    PokemonBaseType.Normal: set([PokemonBaseType.Fighting]),
+    PokemonBaseType.Fire: set([PokemonBaseType.Water, PokemonBaseType.Ground, PokemonBaseType.Rock]),
+    PokemonBaseType.Water: set([PokemonBaseType.Electric, PokemonBaseType.Grass]),
+    PokemonBaseType.Electric: set([PokemonBaseType.Ground]),
+    PokemonBaseType.Grass: set([PokemonBaseType.Fire, PokemonBaseType.Ice, PokemonBaseType.Poison, PokemonBaseType.Flying, PokemonBaseType.Bug]),
+    PokemonBaseType.Ice: set([PokemonBaseType.Fire, PokemonBaseType.Fighting, PokemonBaseType.Rock, PokemonBaseType.Steel]),
+    PokemonBaseType.Fighting: set([PokemonBaseType.Flying, PokemonBaseType.Psychic, PokemonBaseType.Fairy]),
+    PokemonBaseType.Poison: set([PokemonBaseType.Ground, PokemonBaseType.Psychic]),
+    PokemonBaseType.Ground: set([PokemonBaseType.Water, PokemonBaseType.Grass, PokemonBaseType.Ice]),
+    PokemonBaseType.Flying: set([PokemonBaseType.Electric, PokemonBaseType.Ice, PokemonBaseType.Rock]),
+    PokemonBaseType.Psychic: set([PokemonBaseType.Bug, PokemonBaseType.Ghost, PokemonBaseType.Dark]),
+    PokemonBaseType.Bug: set([PokemonBaseType.Fire, PokemonBaseType.Flying, PokemonBaseType.Rock]),
+    PokemonBaseType.Rock: set([PokemonBaseType.Water, PokemonBaseType.Grass, PokemonBaseType.Fighting, PokemonBaseType.Ground, PokemonBaseType.Steel]),
+    PokemonBaseType.Ghost: set([PokemonBaseType.Ghost, PokemonBaseType.Dark]),
+    PokemonBaseType.Dragon: set([PokemonBaseType.Ice, PokemonBaseType.Dragon, PokemonBaseType.Fairy]),
+    PokemonBaseType.Dark: set([PokemonBaseType.Fighting, PokemonBaseType.Bug, PokemonBaseType.Fairy]),
+    PokemonBaseType.Steel: set([PokemonBaseType.Fire, PokemonBaseType.Fighting, PokemonBaseType.Ground]),
+    PokemonBaseType.Fairy: set([PokemonBaseType.Poison, PokemonBaseType.Steel]),
+}
+
+resistances = {
+    PokemonBaseType.Normal: set([]),
+    PokemonBaseType.Fire: set([PokemonBaseType.Fire, PokemonBaseType.Grass, PokemonBaseType.Ice, PokemonBaseType.Bug, PokemonBaseType.Steel, PokemonBaseType.Fairy]),
+    PokemonBaseType.Water: set([PokemonBaseType.Fire, PokemonBaseType.Water, PokemonBaseType.Ice, PokemonBaseType.Steel]),
+    PokemonBaseType.Electric: set([PokemonBaseType.Electric, PokemonBaseType.Flying, PokemonBaseType.Steel]),
+    PokemonBaseType.Grass: set([PokemonBaseType.Water, PokemonBaseType.Electric, PokemonBaseType.Grass, PokemonBaseType.Ground]),
+    PokemonBaseType.Ice: set([PokemonBaseType.Ice]),
+    PokemonBaseType.Fighting: set([PokemonBaseType.Bug, PokemonBaseType.Rock, PokemonBaseType.Dark]),
+    PokemonBaseType.Poison: set([PokemonBaseType.Grass, PokemonBaseType.Fighting, PokemonBaseType.Poison, PokemonBaseType.Bug, PokemonBaseType.Fairy]),
+    PokemonBaseType.Ground: set([PokemonBaseType.Poison, PokemonBaseType.Rock]),
+    PokemonBaseType.Flying: set([PokemonBaseType.Grass, PokemonBaseType.Fighting, PokemonBaseType.Bug]),
+    PokemonBaseType.Psychic: set([PokemonBaseType.Fighting, PokemonBaseType.Psychic]),
+    PokemonBaseType.Bug: set([PokemonBaseType.Grass, PokemonBaseType.Fighting, PokemonBaseType.Ground]),
+    PokemonBaseType.Rock: set([PokemonBaseType.Normal, PokemonBaseType.Fire, PokemonBaseType.Poison, PokemonBaseType.Flying]),
+    PokemonBaseType.Ghost: set([PokemonBaseType.Poison, PokemonBaseType.Bug]),
+    PokemonBaseType.Dragon: set([PokemonBaseType.Fire, PokemonBaseType.Water, PokemonBaseType.Electric, PokemonBaseType.Grass]),
+    PokemonBaseType.Dark: set([PokemonBaseType.Ghost, PokemonBaseType.Dark]),
+    PokemonBaseType.Steel: set([PokemonBaseType.Normal, PokemonBaseType.Grass, PokemonBaseType.Ice, PokemonBaseType.Flying, PokemonBaseType.Psychic, PokemonBaseType.Bug, PokemonBaseType.Rock, PokemonBaseType.Dragon, PokemonBaseType.Steel, PokemonBaseType.Fairy]),
+    PokemonBaseType.Fairy: set([PokemonBaseType.Fighting, PokemonBaseType.Bug, PokemonBaseType.Dark]),
+}
+
+immunities = {
+    PokemonBaseType.Normal: set([PokemonBaseType.Ghost]),
+    PokemonBaseType.Fire: set([]),
+    PokemonBaseType.Water: set([]),
+    PokemonBaseType.Electric: set([]),
+    PokemonBaseType.Grass: set([]),
+    PokemonBaseType.Ice: set([]),
+    PokemonBaseType.Fighting: set([]),
+    PokemonBaseType.Poison: set([]),
+    PokemonBaseType.Ground: set([PokemonBaseType.Electric]),
+    PokemonBaseType.Flying: set([PokemonBaseType.Ground]),
+    PokemonBaseType.Psychic: set([]),
+    PokemonBaseType.Bug: set([]),
+    PokemonBaseType.Rock: set([]),
+    PokemonBaseType.Ghost: set([PokemonBaseType.Normal, PokemonBaseType.Fighting]),
+    PokemonBaseType.Dragon: set([]),
+    PokemonBaseType.Dark: set([]),
+    PokemonBaseType.Steel: set([PokemonBaseType.Poison]),
+    PokemonBaseType.Fairy: set([PokemonBaseType.Dragon])
+  }
+
 class PokemonType:
-  weaknesses = {
-      PokemonBaseType.Normal: [PokemonBaseType.Fighting],
-      PokemonBaseType.Fire: [PokemonBaseType.Water, PokemonBaseType.Ground, PokemonBaseType.Rock],
-      PokemonBaseType.Water: [PokemonBaseType.Electric, PokemonBaseType.Grass],
-      PokemonBaseType.Electric: [PokemonBaseType.Ground],
-      PokemonBaseType.Grass: [PokemonBaseType.Fire, PokemonBaseType.Ice, PokemonBaseType.Poison, PokemonBaseType.Flying, PokemonBaseType.Bug],
-      PokemonBaseType.Ice: [PokemonBaseType.Fire, PokemonBaseType.Fighting, PokemonBaseType.Rock, PokemonBaseType.Steel],
-      PokemonBaseType.Fighting: [PokemonBaseType.Flying, PokemonBaseType.Psychic, PokemonBaseType.Fairy],
-      PokemonBaseType.Poison: [PokemonBaseType.Ground, PokemonBaseType.Psychic],
-      PokemonBaseType.Ground: [PokemonBaseType.Water, PokemonBaseType.Grass, PokemonBaseType.Ice],
-      PokemonBaseType.Flying: [PokemonBaseType.Electric, PokemonBaseType.Ice, PokemonBaseType.Rock],
-      PokemonBaseType.Psychic: [PokemonBaseType.Bug, PokemonBaseType.Ghost, PokemonBaseType.Dark],
-      PokemonBaseType.Bug: [PokemonBaseType.Fire, PokemonBaseType.Flying, PokemonBaseType.Rock],
-      PokemonBaseType.Rock: [PokemonBaseType.Water, PokemonBaseType.Grass, PokemonBaseType.Fighting, PokemonBaseType.Ground, PokemonBaseType.Steel],
-      PokemonBaseType.Ghost: [PokemonBaseType.Ghost, PokemonBaseType.Dark],
-      PokemonBaseType.Dragon: [PokemonBaseType.Ice, PokemonBaseType.Dragon, PokemonBaseType.Fairy],
-      PokemonBaseType.Dark: [PokemonBaseType.Fighting, PokemonBaseType.Bug, PokemonBaseType.Fairy],
-      PokemonBaseType.Steel: [PokemonBaseType.Fire, PokemonBaseType.Fighting, PokemonBaseType.Ground],
-      PokemonBaseType.Fairy: [PokemonBaseType.Poison, PokemonBaseType.Steel],
-  }
+  global weaknesses, resistances, immunities
 
-  resistances = {
-      PokemonBaseType.Normal: [],
-      PokemonBaseType.Fire: [PokemonBaseType.Fire, PokemonBaseType.Grass, PokemonBaseType.Ice, PokemonBaseType.Bug, PokemonBaseType.Steel, PokemonBaseType.Fairy],
-      PokemonBaseType.Water: [PokemonBaseType.Fire, PokemonBaseType.Water, PokemonBaseType.Ice, PokemonBaseType.Steel],
-      PokemonBaseType.Electric: [PokemonBaseType.Electric, PokemonBaseType.Flying, PokemonBaseType.Steel],
-      PokemonBaseType.Grass: [PokemonBaseType.Water, PokemonBaseType.Electric, PokemonBaseType.Grass, PokemonBaseType.Ground],
-      PokemonBaseType.Ice: [PokemonBaseType.Ice],
-      PokemonBaseType.Fighting: [PokemonBaseType.Bug, PokemonBaseType.Rock, PokemonBaseType.Dark],
-      PokemonBaseType.Poison: [PokemonBaseType.Grass, PokemonBaseType.Fighting, PokemonBaseType.Poison, PokemonBaseType.Bug, PokemonBaseType.Fairy],
-      PokemonBaseType.Ground: [PokemonBaseType.Poison, PokemonBaseType.Rock],
-      PokemonBaseType.Flying: [PokemonBaseType.Grass, PokemonBaseType.Fighting, PokemonBaseType.Bug],
-      PokemonBaseType.Psychic: [PokemonBaseType.Fighting, PokemonBaseType.Psychic],
-      PokemonBaseType.Bug: [PokemonBaseType.Grass, PokemonBaseType.Fighting, PokemonBaseType.Ground],
-      PokemonBaseType.Rock: [PokemonBaseType.Normal, PokemonBaseType.Fire, PokemonBaseType.Poison, PokemonBaseType.Flying],
-      PokemonBaseType.Ghost: [PokemonBaseType.Poison, PokemonBaseType.Bug],
-      PokemonBaseType.Dragon: [PokemonBaseType.Fire, PokemonBaseType.Water, PokemonBaseType.Electric, PokemonBaseType.Grass],
-      PokemonBaseType.Dark: [PokemonBaseType.Ghost, PokemonBaseType.Dark],
-      PokemonBaseType.Steel: [PokemonBaseType.Normal, PokemonBaseType.Grass, PokemonBaseType.Ice, PokemonBaseType.Flying, PokemonBaseType.Psychic, PokemonBaseType.Bug, PokemonBaseType.Rock, PokemonBaseType.Dragon, PokemonBaseType.Steel, PokemonBaseType.Fairy],
-      PokemonBaseType.Fairy: [PokemonBaseType.Fighting, PokemonBaseType.Bug, PokemonBaseType.Dark],
-  }
-
-  immunities = {
-      PokemonBaseType.Normal: [PokemonBaseType.Ghost],
-      PokemonBaseType.Fire: [],
-      PokemonBaseType.Water: [],
-      PokemonBaseType.Electric: [],
-      PokemonBaseType.Grass: [],
-      PokemonBaseType.Ice: [],
-      PokemonBaseType.Fighting: [],
-      PokemonBaseType.Poison: [],
-      PokemonBaseType.Ground: [PokemonBaseType.Electric],
-      PokemonBaseType.Flying: [PokemonBaseType.Ground],
-      PokemonBaseType.Psychic: [],
-      PokemonBaseType.Bug: [],
-      PokemonBaseType.Rock: [],
-      PokemonBaseType.Ghost: [PokemonBaseType.Normal, PokemonBaseType.Fighting],
-      PokemonBaseType.Dragon: [],
-      PokemonBaseType.Dark: [],
-      PokemonBaseType.Steel: [PokemonBaseType.Poison],
-      PokemonBaseType.Fairy: [PokemonBaseType.Dragon]
-    }
-
-  def __init__(self, pokemontype1, pokemontype2=None):
-    if type(pokemontype1) is not PokemonBaseType:
+  def __init__(self, type1, type2=None):
+    # TODO: check inputs. For now, assume two valid types as input
+    if type(type1) is not PokemonBaseType:
       raise TypeError('input must be of class PokemonBaseType')
-    #self.type = pokemontype
-    self.name = self.type.name
-    self.value = self.type.value
-    self.weak = self.weaknesses[self.type]
-    self.strong = self.resistances[self.type]
-    self.immune = self.immunities[self.type]
+    if type(type2) is not PokemonBaseType :
+      raise TypeError('input must be of class PokemonBaseType')
+    self.name = "{} / {}".format(type1.name, type2.name)
+    self.weak_2x = weaknesses[type1] & weaknesses[type2]
+    self.resist_3x = immunities[type1] & resistances[type2] | immunities[type2] & resistances[type1]
+    self.resist_2x = ((immunities[type1] ^ immunities[type2]) | (resistances[type1] & resistances[type2])) - self.resist_3x
+    self.resist_1x = (resistances[type1] | resistances[type2] | immunities[type1] & weaknesses[type2] | immunities[type2] & weaknesses[type1]) - self.resist_2x - self.resist_3x
+    self.weak_1x = weaknesses[type1] ^ weaknesses[type2] - self.resist_2x - self.resist_3x
 
   def __str__(self):
     return self.name
 
   def summary(self):
     """Pretty-print a summary of a PokemonType."""
-    name = "Type: {}\n".format(self.name)
-    if self.weak:
-      weak = "  Weak to:   {}\n".format(", ".join([str(i) for i in self.weak]))
-    else:
-      weak = ""
-    if self.strong:
-      strong = "  Strong to: {}\n".format(", ".join([str(i) for i in self.strong]))
-    else:
-      strong = ""
-    if self.immune:
-      immune = "  Immune to: {}\n".format(", ".join([str(i) for i in self.immune]))
-    else:
-      immune = ""
-    return (name + weak + strong + immune)
+    output = "Type: {}\n".format(self.name)
+    if self.weak_2x:
+      output += "  Weakness(2x): {}\n".format(", ".join([str(i) for i in self.weak_2x]))
+    if self.weak_1x:
+      output += "  Weaknesses:   {}\n".format(", ".join([str(i) for i in self.weak_1x]))
+    if self.resist_3x:
+      output += "  Resist(3x):   {}\n".format(", ".join([str(i) for i in self.resist_3x]))
+    if self.resist_2x:
+      output += "  Resist(2x):   {}\n".format(", ".join([str(i) for i in self.resist_2x]))
+    if self.resist_1x:
+      output += "  Resistances:  {}\n".format(", ".join([str(i) for i in self.resist_1x]))
+    return output
 
 class PokemonTypeSet:
   """A class representing a pair of Pokemon types, such as 'Fire / Flying'."""
