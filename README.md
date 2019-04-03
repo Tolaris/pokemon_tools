@@ -1,10 +1,12 @@
 # pokemon_tools
 
-Tools for working with Pokémon Go / Pokémon game data.
+Tools for working with Pokémon Go / Pokémon game data. If you just want to work
+with the data, make a copy of [my spreadsheet](https://www.tolaris.com/go/pogodata).
 
 ## pokemongo_game_master_to_csv.py
 
-Converts GAME_MASTER.json into a set of spreadsheets for easy analysis.
+Converts GAME_MASTER.json into a set of spreadsheets for easy analysis. See:
+https://github.com/pokemongo-dev-contrib/pokemongo-game-master
 
 Example usage:
 ```
