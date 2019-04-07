@@ -11,6 +11,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
 
+from collections import defaultdict
+
 # CSV row headers
 headerFastMoves = ["Move Name", "Type", "DPT", "EPT", "D+EPT", "PvP Duration", "PvP Power", "PvP Energy", "PvE Power", "PvE Energy", "PvE Duration"]
 headerChargeMoves = ["Move Name", "Type", "PvP Power", "PvP Energy", "PvP DPE", "PvE Power", "PvE Energy", "PvE Duration"]
@@ -18,31 +20,31 @@ headerChargeMoves = ["Move Name", "Type", "PvP Power", "PvP Energy", "PvP DPE", 
 # output filenames
 filenameFastMoves   = "output/fastMoves.csv"
 filenameChargeMoves = "output/chargeMoves.csv"
+filenamePokemonStats = "output/pokemonStats.csv"
+
+def outputDictAsCsv(datadict, header, filename):
+  """Output dict as CSV spreadsheet with header."""
+  import csv
+  with open(filename, 'w', newline='') as csvfile:
+    csvwriter = csv.DictWriter(csvfile, fieldnames=header)
+    csvwriter.writeheader()
+    for k in sorted(datadict.keys()):
+      csvwriter.writerow(datadict[k])
 
 def getAllFieldsByName(field, gm):
   """Given a field name and GAME_MASTER, return a list of matching dicts."""
   results = []
   for i in gm['itemTemplates']:
     if field in i.keys():
-      results.append(i[field])
+      match = i[field]
+      # merge "templateId" into each returned field
+      if "templateId" in i.keys():
+        match["templateId"] = i["templateId"]
+      results.append(match)
   return results
-
-def getFieldByName(field, gm):
-  """Given a field name and GAME_MASTER, return the first matching dict."""
-  results = []
-  for i in gm['itemTemplates']:
-    if field in i.keys():
-      return i[field]
-
-def outputCsv(header, rows, filename):
-  """Write header and a list of rows to a csv file."""
-  import csv
-  pass
 
 def getCombatMoves(gm):
   """Return two dicts containing fast moves and charge moves."""
-  from collections import defaultdict
-
   combatMoves = getAllFieldsByName("combatMove", gm)
   moveSettings = getAllFieldsByName("moveSettings", gm)
   fastMoves = defaultdict(dict)
@@ -115,30 +117,55 @@ def getCombatMoves(gm):
 
   return fastMoves, chargeMoves
 
-def outputMoves(moves, header, filename):
-  """Output a spreadsheet of moves."""
-  import csv
-  with open(filename, 'w', newline='') as csvfile:
-    csvwriter = csv.DictWriter(csvfile, fieldnames=header)
-    csvwriter.writeheader()
-    for k in sorted(moves.keys()):
-      csvwriter.writerow(moves[k])
+# Plan
+# Merge pokemonSettings and genderSettings
+headerPokemonStats = ["Name", "Pokedex ID", "Type", "Type2", "Attack", "Defense", "Stamina", "Family", "3rd Move Stardust", "3rd Move Candy", "km Buddy Distance", "Encounter Capture Rate", "Encounter Flee Rate"]
+# "Quick Moves", "Charge Moves"
+# "Male %", "Female %", "Genderless %"
+
+def getPokemonStats(gm):
+  """Return a dict containing Pokémon base data."""
+  pokemonSettings = getAllFieldsByName("pokemonSettings", gm)
+  pokemonStats = defaultdict(dict)
+
+  for pokemon in pokemonSettings:
+    pokemonName = pokemon['pokemonId'].replace("_"," ").title()
+    pokemonStats[pokemonName] = {
+        'Name': pokemonName,
+        'Pokedex ID': int(pokemon['templateId'][1:5]),
+        'Type': pokemon['type'].replace("POKEMON_TYPE_","").title(),
+        'Type2': pokemon['type2'].replace("POKEMON_TYPE_","").title(),
+        'Attack': pokemon['stats']['baseAttack'],
+        'Defense': pokemon['stats']['baseDefense'],
+        'Stamina': pokemon['stats']['baseStamina'],
+        'Family': pokemon['familyId'][7:].title(),
+        '3rd Move Stardust': pokemon['thirdMove']['stardustToUnlock'],
+        '3rd Move Candy': pokemon['thirdMove']['candyToUnlock'],
+        'km Buddy Distance': pokemon['kmBuddyDistance'],
+        'Encounter Capture Rate': pokemon['encounter']['baseCaptureRate'],
+        'Encounter Flee Rate': pokemon['encounter']['baseFleeRate'],
+    }
+  return pokemonStats, pokemonSettings
 
 
 if __name__ == '__main__':
+  from functools import partial
+  import json
+  import pprint
   import sys
+
   if len(sys.argv) < 2:
     print("usage: {} path/to/GAME_MASTER.json".format(sys.argv[0]))
     print("\n")
     print("try:   pokemongo_game_master_to_csv.py ../pokemongo-game-master/versions/latest/GAME_MASTER.json")
     sys.exit(1)
 
-  import json
   with open(sys.argv[1],"r") as fp:
-    gm = json.load(fp)
-
-  import pprint
+    # possible bug now: do we want empty values to default to 0, '', or None?
+    gm = json.load(fp, object_hook=partial(defaultdict, lambda: ''))
   pp = pprint.PrettyPrinter()
   fastMoves, chargeMoves = getCombatMoves(gm)
-  outputMoves(fastMoves, headerFastMoves, filenameFastMoves)
-  outputMoves(chargeMoves, headerChargeMoves, filenameChargeMoves)
+#  outputDictAsCsv(fastMoves, headerFastMoves, filenameFastMoves)
+#  outputDictAsCsv(chargeMoves, headerChargeMoves, filenameChargeMoves)
+  ps, ps2 = getPokemonStats(gm)
+  outputDictAsCsv(ps, headerPokemonStats, filenamePokemonStats)
