@@ -123,14 +123,14 @@ def getPokemonStats(gm):
         'Attack': pokemon['stats']['baseAttack'],
         'Defense': pokemon['stats']['baseDefense'],
         'Stamina': pokemon['stats']['baseStamina'],
-        'Family': pokemon['familyId'][7:].title(),
+        'Family': pokemon['familyId'][7:].replace("_"," ").title(),
         '3rd Move Stardust': pokemon['thirdMove']['stardustToUnlock'],
         '3rd Move Candy': pokemon['thirdMove']['candyToUnlock'],
         'km Buddy Distance': pokemon['kmBuddyDistance'],
         'Encounter Capture Rate': pokemon['encounter']['baseCaptureRate'],
         'Encounter Flee Rate': pokemon['encounter']['baseFleeRate'],
-        'Quick Moves': ", ".join(pokemon['quickMoves']).replace("_FAST","").replace("_"," ").title(),
-        'Charge Moves': ", ".join(pokemon['cinematicMoves']).replace("_"," ").title(),
+        'Quick Moves': ", ".join(pokemon['quickMoves']).replace("_FAST","").replace("_"," ").title(), # non-Legacy
+        'Charge Moves': ", ".join(pokemon['cinematicMoves']).replace("_"," ").title(),                # non-Legacy
     }
     for genderSetting in genderSettings:
       pokemonName = genderSetting['pokemon'].replace("_"," ").title()
