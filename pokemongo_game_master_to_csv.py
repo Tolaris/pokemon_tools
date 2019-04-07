@@ -16,6 +16,7 @@ from collections import defaultdict
 # CSV row headers
 headerFastMoves = ["Move Name", "Type", "DPT", "EPT", "D+EPT", "PvP Duration", "PvP Power", "PvP Energy", "PvE Power", "PvE Energy", "PvE Duration"]
 headerChargeMoves = ["Move Name", "Type", "PvP Power", "PvP Energy", "PvP DPE", "PvE Power", "PvE Energy", "PvE Duration"]
+headerPokemonStats = ["Name", "Pokedex ID", "Type", "Type2", "Attack", "Defense", "Stamina", "Family", "3rd Move Stardust", "3rd Move Candy", "km Buddy Distance", "Encounter Capture Rate", "Encounter Flee Rate", "Male %", "Female %", "Genderless %", "Quick Moves", "Charge Moves"]
 
 # output filenames
 filenameFastMoves   = "output/fastMoves.csv"
@@ -50,22 +51,9 @@ def getCombatMoves(gm):
   fastMoves = defaultdict(dict)
   chargeMoves = defaultdict(dict)
 
-  """
-  Fast move:
-  >>> combatMoves[130]
-  {'uniqueId': 'CONFUSION_FAST', 'type': 'POKEMON_TYPE_PSYCHIC', 'power': 16.0, 'vfxName': 'confusion_fast', 'durationTurns': 3, 'energyDelta': 12}
-  >>> moveSettings[130]
-  {'movementId': 'CONFUSION_FAST', 'animationId': 4, 'pokemonType': 'POKEMON_TYPE_PSYCHIC', 'power': 20.0, 'accuracyChance': 1.0, 'staminaLossScalar': 0.01, 'trainerLevelMin': 1, 'trainerLevelMax': 100, 'vfxName': 'confusion_fast', 'durationMs': 1600, 'damageWindowStartMs': 600, 'damageWindowEndMs': 1600, 'energyDelta': 15}
-
-  Charge move:
-  >>> combatMoves[0]
-  {'uniqueId': 'WRAP', 'type': 'POKEMON_TYPE_NORMAL', 'power': 60.0, 'vfxName': 'wrap', 'energyDelta': -45}
-  >>> moveSettings[0]
-  {'movementId': 'WRAP', 'animationId': 5, 'pokemonType': 'POKEMON_TYPE_NORMAL', 'power': 60.0, 'accuracyChance': 1.0, 'criticalChance': 0.05, 'staminaLossScalar': 0.06, 'trainerLevelMin': 1, 'trainerLevelMax': 100, 'vfxName': 'wrap', 'durationMs': 2900, 'damageWindowStartMs': 2050, 'damageWindowEndMs': 2700, 'energyDelta': -33}
-  """
-
   for pvpMove in combatMoves:
-    # automatically create missing fields with value of 0
+    # automatically create missing fields with 0 instead of default defined in
+    # json.load()
     pvpMove = defaultdict(int,pvpMove)
 
     # Fast moves
@@ -96,7 +84,8 @@ def getCombatMoves(gm):
       chargeMoves[moveName]['PvP DPE'] = chargeMoves[moveName]['PvP Power'] / -chargeMoves[moveName]['PvP Energy']
 
   for pveMove in moveSettings:
-    # automatically create missing fields with value of 0
+    # automatically create missing fields with 0 instead of default defined in
+    # json.load()
     pveMove = defaultdict(int,pveMove)
 
     # Fast moves
@@ -117,15 +106,11 @@ def getCombatMoves(gm):
 
   return fastMoves, chargeMoves
 
-# Plan
-# Merge pokemonSettings and genderSettings
-headerPokemonStats = ["Name", "Pokedex ID", "Type", "Type2", "Attack", "Defense", "Stamina", "Family", "3rd Move Stardust", "3rd Move Candy", "km Buddy Distance", "Encounter Capture Rate", "Encounter Flee Rate"]
-# "Quick Moves", "Charge Moves"
-# "Male %", "Female %", "Genderless %"
 
 def getPokemonStats(gm):
   """Return a dict containing Pokémon base data."""
   pokemonSettings = getAllFieldsByName("pokemonSettings", gm)
+  genderSettings = getAllFieldsByName("genderSettings", gm)
   pokemonStats = defaultdict(dict)
 
   for pokemon in pokemonSettings:
@@ -144,8 +129,16 @@ def getPokemonStats(gm):
         'km Buddy Distance': pokemon['kmBuddyDistance'],
         'Encounter Capture Rate': pokemon['encounter']['baseCaptureRate'],
         'Encounter Flee Rate': pokemon['encounter']['baseFleeRate'],
+        'Quick Moves': ", ".join(pokemon['quickMoves']).replace("_FAST","").replace("_"," ").title(),
+        'Charge Moves': ", ".join(pokemon['cinematicMoves']).replace("_"," ").title(),
     }
-  return pokemonStats, pokemonSettings
+    for genderSetting in genderSettings:
+      pokemonName = genderSetting['pokemon'].replace("_"," ").title()
+      pokemonStats[pokemonName]['Male %'] = genderSetting['gender']['malePercent']
+      pokemonStats[pokemonName]['Female %'] = genderSetting['gender']['femalePercent']
+      pokemonStats[pokemonName]['Genderless %'] = genderSetting['gender']['genderlessPercent']
+
+  return pokemonStats
 
 
 if __name__ == '__main__':
@@ -161,11 +154,12 @@ if __name__ == '__main__':
     sys.exit(1)
 
   with open(sys.argv[1],"r") as fp:
-    # possible bug now: do we want empty values to default to 0, '', or None?
     gm = json.load(fp, object_hook=partial(defaultdict, lambda: ''))
-  pp = pprint.PrettyPrinter()
+  pp = pprint.PrettyPrinter().pprint
+
   fastMoves, chargeMoves = getCombatMoves(gm)
-#  outputDictAsCsv(fastMoves, headerFastMoves, filenameFastMoves)
-#  outputDictAsCsv(chargeMoves, headerChargeMoves, filenameChargeMoves)
-  ps, ps2 = getPokemonStats(gm)
-  outputDictAsCsv(ps, headerPokemonStats, filenamePokemonStats)
+  outputDictAsCsv(fastMoves, headerFastMoves, filenameFastMoves)
+  outputDictAsCsv(chargeMoves, headerChargeMoves, filenameChargeMoves)
+
+  pokemonStats = getPokemonStats(gm)
+  outputDictAsCsv(pokemonStats, headerPokemonStats, filenamePokemonStats)
