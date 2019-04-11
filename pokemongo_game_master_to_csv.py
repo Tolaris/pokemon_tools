@@ -112,9 +112,17 @@ def getPokemonStats(gm):
   pokemonSettings = getAllFieldsByName("pokemonSettings", gm)
   genderSettings = getAllFieldsByName("genderSettings", gm)
   pokemonStats = defaultdict(dict)
+  formsToBaseForm = {}
 
   for pokemon in pokemonSettings:
-    pokemonName = pokemon['pokemonId'].replace("_"," ").title()
+    # Formes have multiple entries, one for the "base" form (not a Pokemon) and
+    # one for each form like Normal, Alolan. Collect a mapping.
+    if "form" in pokemon.keys():
+      pokemonName = pokemon['form'].replace("_"," ").title()
+      formsToBaseForm[pokemonName] = pokemon['pokemonId'].replace("_"," ").title()
+    else:
+      pokemonName = pokemon['pokemonId'].replace("_"," ").title()
+
     pokemonStats[pokemonName] = {
         'Name': pokemonName,
         'Pokedex ID': int(pokemon['templateId'][1:5]),
@@ -132,11 +140,25 @@ def getPokemonStats(gm):
         'Quick Moves': ", ".join(pokemon['quickMoves']).replace("_FAST","").replace("_"," ").title(), # non-Legacy
         'Charge Moves': ", ".join(pokemon['cinematicMoves']).replace("_"," ").title(),                # non-Legacy
     }
+
+    # Gender settings are the same for all Formes. Copy the base form gender data
+    # to all Formes.
     for genderSetting in genderSettings:
       pokemonName = genderSetting['pokemon'].replace("_"," ").title()
       pokemonStats[pokemonName]['Male %'] = genderSetting['gender']['malePercent']
       pokemonStats[pokemonName]['Female %'] = genderSetting['gender']['femalePercent']
       pokemonStats[pokemonName]['Genderless %'] = genderSetting['gender']['genderlessPercent']
+    for pokemonForm, baseForm in formsToBaseForm.items():
+      pokemonStats[pokemonForm]['Male %'] = pokemonStats[baseForm]['Male %']
+      pokemonStats[pokemonForm]['Female %'] = pokemonStats[baseForm]['Female %']
+      pokemonStats[pokemonForm]['Genderless %'] = pokemonStats[baseForm]['Genderless %']
+
+    # Now delete the base form, so we only output one line per Forme.
+    for baseForm in formsToBaseForm.values():
+      try:
+        del pokemonStats[baseForm]
+      except KeyError:
+        pass
 
   return pokemonStats
 
