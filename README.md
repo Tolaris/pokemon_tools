@@ -11,10 +11,9 @@ https://github.com/pokemongo-dev-contrib/pokemongo-game-master
 
 Example usage:
 ```
-pokemongo_game_master_to_spreadsheet.py -s 1AaaAaaaaAaaaAAA1a1AAA1aa11aaA1AaAAa1A_aAAaa ../pokemongo-game-master/versions/latest/GAME_MASTER.json
+pokemongo_game_master_to_spreadsheet.py -o sheets -s 1AaaAaaaaAaaaAAA1a1AAA1aa11aaA1AaAAa1A_aAAaa ../pokemongo-game-master/versions/latest/GAME_MASTER.json
 or
-pokemongo_game_master_to_spreadsheet.py -c output ../pokemongo-game-master/versions/latest/GAME_MASTER.json
-
+pokemongo_game_master_to_spreadsheet.py -o csv -c output ../pokemongo-game-master/versions/latest/GAME_MASTER.json
 ```
 
 Open the Google Sheet (-s) or files in the output directory (-c) for results.  If you just want to work with the latest data, make a copy of [this Google
