@@ -1,19 +1,24 @@
 # pokemon_tools
 
-Tools for working with Pokémon Go / Pokémon game data. If you just want to work
-with the data, make a copy of [my spreadsheet](https://www.tolaris.com/go/pogodata).
+Tools for working with Pokémon Go / Pokémon game data.
 
-## pokemongo_game_master_to_csv.py
+Pokémon is Copyright Gamefreak, Nintendo and The Pokémon Company 2001-2019. All images and names owned and trademarked by Nintendo, Niantic, The Pokémon Company, and Gamefreak are property of their respective owners.
 
-Converts GAME_MASTER.json into a set of spreadsheets for easy analysis. See:
+## pokemongo_game_master_to_spreadsheet.py
+
+Converts GAME_MASTER.json into spreadsheets (Google Sheets or CSV) for easy analysis. Get a copy of the input here:
 https://github.com/pokemongo-dev-contrib/pokemongo-game-master
 
 Example usage:
 ```
-pokemongo_game_master_to_csv.py ../pokemongo-game-master/versions/latest/GAME_MASTER.json
+pokemongo_game_master_to_spreadsheet.py -s 1AaaAaaaaAaaaAAA1a1AAA1aa11aaA1AaAAa1A_aAAaa ../pokemongo-game-master/versions/latest/GAME_MASTER.json
+or
+pokemongo_game_master_to_spreadsheet.py -c output ../pokemongo-game-master/versions/latest/GAME_MASTER.json
+
 ```
 
-See the "output" directory for results.
+Open the Google Sheet (-s) or files in the output directory (-c) for results.  If you just want to work with the latest data, make a copy of [this Google
+Sheet](https://docs.google.com/spreadsheets/d/1HyxMawsvHyxcKVL9a9GKH2as15qdI9HhSCr0Q_hWYnc/edit).
 
 ## pokemon_types.py
 

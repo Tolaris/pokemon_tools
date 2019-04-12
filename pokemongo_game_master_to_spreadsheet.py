@@ -11,17 +11,35 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
 
-from collections import defaultdict
+"""Extract Pokémon Go game data to spreadsheets."""
 
-# CSV row headers
+from collections import defaultdict
+from functools import partial
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+import argparse
+import json
+import pickle
+import os
+import os.path
+
+# Row headers
 headerFastMoves = ["Move Name", "Type", "DPT", "EPT", "D+EPT", "PvP Duration", "PvP Power", "PvP Energy", "PvE Power", "PvE Energy", "PvE Duration"]
 headerChargeMoves = ["Move Name", "Type", "PvP Power", "PvP Energy", "PvP DPE", "PvE Power", "PvE Energy", "PvE Duration"]
 headerPokemonStats = ["Name", "Pokedex ID", "Type", "Type2", "Attack", "Defense", "Stamina", "Family", "3rd Move Stardust", "3rd Move Candy", "km Buddy Distance", "Encounter Capture Rate", "Encounter Flee Rate", "Male %", "Female %", "Genderless %", "Quick Moves", "Charge Moves"]
 
-# output filenames
-filenameFastMoves   = "output/fastMoves.csv"
-filenameChargeMoves = "output/chargeMoves.csv"
-filenamePokemonStats = "output/pokemonStats.csv"
+# CSV output filenames
+csvOutputDirectory = "output"
+csvFilenameFastMoves   = "fastMoves.csv"
+csvFilenameChargeMoves = "chargeMoves.csv"
+csvFilenamePokemonStats = "pokemonStats.csv"
+
+# Google Sheets output
+sheetsSpreadsheetId = "1HyxMawsvHyxcKVL9a9GKH2as15qdI9HhSCr0Q_hWYnc"
+sheetsTabFastMoves = "Fast"
+sheetsTabChargeMoves = "Charge"
+sheetsTabPokemonStats = "Pokemon"
 
 def outputDictAsCsv(datadict, header, filename):
   """Output dict as CSV spreadsheet with header."""
@@ -31,6 +49,76 @@ def outputDictAsCsv(datadict, header, filename):
     csvwriter.writeheader()
     for k in sorted(datadict.keys()):
       csvwriter.writerow(datadict[k])
+
+def getSheetsService():
+  """Returns a Google Sheets service, refreshing credentials if required."""
+  # Taken directly from:
+  # https://developers.google.com/sheets/api/quickstart/python
+  scopes = ['https://www.googleapis.com/auth/spreadsheets']
+  creds = None
+  # The file token.pickle stores the user's access and refresh tokens, and is
+  # created automatically when the authorization flow completes for the first
+  # time.
+  if os.path.exists('credentials_token.pickle'):
+      with open('credentials_token.pickle', 'rb') as token:
+          creds = pickle.load(token)
+  # If there are no (valid) credentials available, let the user log in.
+  if not creds or not creds.valid:
+      if creds and creds.expired and creds.refresh_token:
+          creds.refresh(Request())
+      else:
+          flow = InstalledAppFlow.from_client_secrets_file('credentials.json', scopes)
+          creds = flow.run_local_server()
+      # Save the credentials for the next run
+      with open('credentials_token.pickle', 'wb') as token:
+          pickle.dump(creds, token)
+  return build('sheets', 'v4', credentials=creds)
+
+def getRowsFromDictInHeaderOrder(D, order):
+  """Given a dict and list of columns, return a 2D list ordered by column.
+  D's keys are lost and all k:v pairs become column:cell values.
+  Input:
+    D: the dictionary of key: dict
+    order: a list of column headers
+  Returns: a list of lists, sorted by first element, with column headers first.
+  """
+  # build dict of "heading: columnNumber" pairs
+  columnOrder = {}
+  for x in range(len(order)):
+    columnOrder[order[x]] = x
+  # TODO: Figure out the pythonic way to do this with dict or list
+  # comprehensions. It'll probably be faster.
+  results = []
+  for d in D.values():
+    row = ['' for _ in range(len(d))]
+    for k,v in d.items():
+      row[columnOrder[k]] = v
+    results.append(row)
+  return [order] + sorted(results)
+
+def outputDictAsSheet(datadict, header, spreadsheetId, tabName):
+  """Output dict as Google sheet with header. Clears sheet of existing values."""
+  rows = getRowsFromDictInHeaderOrder(datadict, header)
+  cellrange = '{}!A1:Z'.format(tabName)
+
+  # Call the Sheets API
+  service = getSheetsService()
+  body = {
+      'ranges': [cellrange]
+  }
+  service.spreadsheets().values().batchClear(
+      spreadsheetId=spreadsheetId,
+      body=body
+  ).execute()
+  body = {
+      'values': rows
+  }
+  service.spreadsheets().values().update(
+      spreadsheetId=spreadsheetId,
+      range=cellrange,
+      valueInputOption='USER_ENTERED',
+      body=body
+  ).execute()
 
 def getAllFieldsByName(field, gm):
   """Given a field name and GAME_MASTER, return a list of matching dicts."""
@@ -162,26 +250,36 @@ def getPokemonStats(gm):
 
   return pokemonStats
 
-
 if __name__ == '__main__':
-  from functools import partial
-  import json
-  import pprint
-  import sys
+  # argparse
+  parser = argparse.ArgumentParser(description=__doc__)
+  parser.add_argument("-c", "--csv", help="don't update Google Sheets, instead output CSV files in this directory (default {})".format(csvOutputDirectory), default=csvOutputDirectory)
+  parser.add_argument("-s", "--sheet", help="the Google Sheet ID to update (default {})".format(sheetsSpreadsheetId), default=sheetsSpreadsheetId)
+  parser.add_argument("game_master", help="the path to GAME_MASTER.json")
+  args = parser.parse_args()
 
-  if len(sys.argv) < 2:
-    print("usage: {} path/to/GAME_MASTER.json".format(sys.argv[0]))
-    print("\n")
-    print("try:   pokemongo_game_master_to_csv.py ../pokemongo-game-master/versions/latest/GAME_MASTER.json")
-    sys.exit(1)
+  if not args.game_master:
+    parser.print_help()
+    parser.exit(1)
 
-  with open(sys.argv[1],"r") as fp:
+  with open(args.game_master, "r") as fp:
     gm = json.load(fp, object_hook=partial(defaultdict, lambda: ''))
+
+  import pprint
   pp = pprint.PrettyPrinter().pprint
 
   fastMoves, chargeMoves = getCombatMoves(gm)
-  outputDictAsCsv(fastMoves, headerFastMoves, filenameFastMoves)
-  outputDictAsCsv(chargeMoves, headerChargeMoves, filenameChargeMoves)
-
   pokemonStats = getPokemonStats(gm)
-  outputDictAsCsv(pokemonStats, headerPokemonStats, filenamePokemonStats)
+
+  if args.csv:
+    try:
+      os.mkdir(args.csv)
+    except FileExistsError:
+      pass
+    outputDictAsCsv(fastMoves, headerFastMoves, os.path.join(args.csv, csvFilenameFastMoves))
+    outputDictAsCsv(chargeMoves, headerChargeMoves, os.path.join(args.csv, csvFilenameChargeMoves))
+    outputDictAsCsv(pokemonStats, headerPokemonStats, os.path.join(args.csv, csvFilenamePokemonStats))
+  else:
+    outputDictAsSheet(fastMoves, headerFastMoves, args.sheet, sheetsTabFastMoves)
+    outputDictAsSheet(chargeMoves, headerChargeMoves, args.sheet, sheetsTabChargeMoves)
+    outputDictAsSheet(pokemonStats, headerPokemonStats, args.sheet, sheetsTabPokemonStats)
