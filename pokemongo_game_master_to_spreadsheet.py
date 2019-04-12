@@ -253,7 +253,9 @@ def getPokemonStats(gm):
 if __name__ == '__main__':
   # argparse
   parser = argparse.ArgumentParser(description=__doc__)
-  parser.add_argument("-c", "--csv", help="don't update Google Sheets, instead output CSV files in this directory (default {})".format(csvOutputDirectory), default=csvOutputDirectory)
+
+  parser.add_argument("-o", "--output", choices=["csv", "sheets"], help="output csv files or Google Sheets (default {})".format(csvOutputDirectory), default="sheets")
+  parser.add_argument("-c", "--csv_dir", help="directory to output CSV files (default {})".format(csvOutputDirectory), default=csvOutputDirectory)
   parser.add_argument("-s", "--sheet", help="the Google Sheet ID to update (default {})".format(sheetsSpreadsheetId), default=sheetsSpreadsheetId)
   parser.add_argument("game_master", help="the path to GAME_MASTER.json")
   args = parser.parse_args()
@@ -271,15 +273,17 @@ if __name__ == '__main__':
   fastMoves, chargeMoves = getCombatMoves(gm)
   pokemonStats = getPokemonStats(gm)
 
-  if args.csv:
+  if args.output == "csv":
     try:
-      os.mkdir(args.csv)
+      os.mkdir(args.csv_dir)
     except FileExistsError:
       pass
-    outputDictAsCsv(fastMoves, headerFastMoves, os.path.join(args.csv, csvFilenameFastMoves))
-    outputDictAsCsv(chargeMoves, headerChargeMoves, os.path.join(args.csv, csvFilenameChargeMoves))
-    outputDictAsCsv(pokemonStats, headerPokemonStats, os.path.join(args.csv, csvFilenamePokemonStats))
+    print("Outputing CSV files in {}".format(os.path.abspath(args.csv_dir)))
+    outputDictAsCsv(fastMoves, headerFastMoves, os.path.join(args.csv_dir, csvFilenameFastMoves))
+    outputDictAsCsv(chargeMoves, headerChargeMoves, os.path.join(args.csv_dir, csvFilenameChargeMoves))
+    outputDictAsCsv(pokemonStats, headerPokemonStats, os.path.join(args.csv_dir, csvFilenamePokemonStats))
   else:
+    print("Updating https://docs.google.com/spreadsheets/d/{}".format(args.sheet))
     outputDictAsSheet(fastMoves, headerFastMoves, args.sheet, sheetsTabFastMoves)
     outputDictAsSheet(chargeMoves, headerChargeMoves, args.sheet, sheetsTabChargeMoves)
     outputDictAsSheet(pokemonStats, headerPokemonStats, args.sheet, sheetsTabPokemonStats)
