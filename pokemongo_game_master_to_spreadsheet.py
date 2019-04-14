@@ -28,18 +28,21 @@ import os.path
 headerFastMoves = ["Move Name", "Type", "DPT", "EPT", "D+EPT", "PvP Duration", "PvP Power", "PvP Energy", "PvE Power", "PvE Energy", "PvE Duration"]
 headerChargeMoves = ["Move Name", "Type", "PvP Power", "PvP Energy", "PvP DPE", "PvE Power", "PvE Energy", "PvE Duration"]
 headerPokemonStats = ["Name", "Pokedex ID", "Type", "Type2", "Attack", "Defense", "Stamina", "Family", "3rd Move Stardust", "3rd Move Candy", "km Buddy Distance", "Encounter Capture Rate", "Encounter Flee Rate", "Male %", "Female %", "Genderless %", "Quick Moves", "Charge Moves"]
+headerCpMultiplier = ["Level", "CP x"]
 
 # CSV output filenames
 csvOutputDirectory = "output"
 csvFilenameFastMoves   = "fastMoves.csv"
 csvFilenameChargeMoves = "chargeMoves.csv"
 csvFilenamePokemonStats = "pokemonStats.csv"
+csvFilenameCpMultiplier = "cpMultiplier.csv"
 
 # Google Sheets output
 sheetsSpreadsheetId = "1HyxMawsvHyxcKVL9a9GKH2as15qdI9HhSCr0Q_hWYnc"
 sheetsTabFastMoves = "Fast"
 sheetsTabChargeMoves = "Charge"
 sheetsTabPokemonStats = "Pokemon"
+sheetsTabCpMultiplier = "CP"
 
 def outputDictAsCsv(datadict, header, filename):
   """Output dict as CSV spreadsheet with header."""
@@ -250,11 +253,24 @@ def getPokemonStats(gm):
 
   return pokemonStats
 
+
+def getCpMultiplier(gm):
+  """Return a dict containing Pokémon base data."""
+  playerLevel = getAllFieldsByName("playerLevel", gm)[0]
+  cpMultiplier = {}
+  for i in range(len(playerLevel["cpMultiplier"])):
+    cpMultiplier[i+1] = {
+        "Level": i+1,
+        "CP x": playerLevel["cpMultiplier"][i],
+      }
+  return cpMultiplier
+
+
 if __name__ == '__main__':
   # argparse
   parser = argparse.ArgumentParser(description=__doc__)
 
-  parser.add_argument("-o", "--output", choices=["csv", "sheets"], help="output csv files or Google Sheets (default {})".format(csvOutputDirectory), default="sheets")
+  parser.add_argument("-o", "--output", choices=["csv", "sheets", "test"], help="output csv files or Google Sheets (default {})".format(csvOutputDirectory), default="sheets")
   parser.add_argument("-c", "--csv_dir", help="directory to output CSV files (default {})".format(csvOutputDirectory), default=csvOutputDirectory)
   parser.add_argument("-s", "--sheet", help="the Google Sheet ID to update (default {})".format(sheetsSpreadsheetId), default=sheetsSpreadsheetId)
   parser.add_argument("game_master", help="the path to GAME_MASTER.json")
@@ -267,11 +283,9 @@ if __name__ == '__main__':
   with open(args.game_master, "r") as fp:
     gm = json.load(fp, object_hook=partial(defaultdict, lambda: ''))
 
-  import pprint
-  pp = pprint.PrettyPrinter().pprint
-
   fastMoves, chargeMoves = getCombatMoves(gm)
   pokemonStats = getPokemonStats(gm)
+  #cpMultiplier = getCpMultiplier(gm)
 
   if args.output == "csv":
     try:
@@ -282,8 +296,15 @@ if __name__ == '__main__':
     outputDictAsCsv(fastMoves, headerFastMoves, os.path.join(args.csv_dir, csvFilenameFastMoves))
     outputDictAsCsv(chargeMoves, headerChargeMoves, os.path.join(args.csv_dir, csvFilenameChargeMoves))
     outputDictAsCsv(pokemonStats, headerPokemonStats, os.path.join(args.csv_dir, csvFilenamePokemonStats))
-  else:
+    #outputDictAsCsv(cpMultiplier, headerCpMultiplier, os.path.join(args.csv_dir, csvFilenameCpMultiplier))
+  elif args.output == "sheets":
     print("Updating https://docs.google.com/spreadsheets/d/{}".format(args.sheet))
     outputDictAsSheet(fastMoves, headerFastMoves, args.sheet, sheetsTabFastMoves)
     outputDictAsSheet(chargeMoves, headerChargeMoves, args.sheet, sheetsTabChargeMoves)
     outputDictAsSheet(pokemonStats, headerPokemonStats, args.sheet, sheetsTabPokemonStats)
+    #outputDictAsSheet(cpMultiplier, headerCpMultiplier, args.sheet, sheetsTabCpMultiplier)
+  else: # else we are in "test" mode, and want to inspect variables interactively
+    import pprint
+    pp = pprint.PrettyPrinter().pprint
+    print("dir():", dir())
+    print("Pretty-print with 'pp()'")
