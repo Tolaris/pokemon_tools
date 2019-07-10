@@ -29,6 +29,7 @@ headerFastMoves = ["Move Name", "Type", "DPT", "EPT", "D+EPT", "PvP Duration", "
 headerChargeMoves = ["Move Name", "Type", "PvP Power", "PvP Energy", "PvP DPE", "PvE Power", "PvE Energy", "PvE Duration"]
 headerPokemonStats = ["Name", "Pokedex ID", "Type", "Type2", "Attack", "Defense", "Stamina", "Family", "3rd Move Stardust", "3rd Move Candy", "km Buddy Distance", "Encounter Capture Rate", "Encounter Flee Rate", "Male %", "Female %", "Genderless %", "Quick Moves", "Charge Moves"]
 headerCpMultiplier = ["Level", "CP x"]
+headerMovesByPokemon = ["Move Name", "Move Type", "Move Class", "Pokemon Name", "Pokemon Type", "Pokemon Type2"]
 
 # CSV output filenames
 csvOutputDirectory = "output"
@@ -203,6 +204,7 @@ def getPokemonStats(gm):
   pokemonSettings = getAllFieldsByName("pokemonSettings", gm)
   genderSettings = getAllFieldsByName("genderSettings", gm)
   pokemonStats = defaultdict(dict)
+  movesByPokemon = []
   formsToBaseForm = {}
 
   for pokemon in pokemonSettings:
@@ -214,6 +216,8 @@ def getPokemonStats(gm):
     else:
       pokemonName = pokemon['pokemonId'].replace("_"," ").title()
 
+    quickMoves = [x.replace("_FAST","").replace("_"," ").title() for x in pokemon['quickMoves']] # non-Legacy
+    chargeMoves = [x.replace("_"," ").title() for x in pokemon['cinematicMoves']]                # non-Legacy
     pokemonStats[pokemonName] = {
         'Name': pokemonName,
         'Pokedex ID': int(pokemon['templateId'][1:5]),
@@ -228,8 +232,8 @@ def getPokemonStats(gm):
         'km Buddy Distance': pokemon['kmBuddyDistance'],
         'Encounter Capture Rate': pokemon['encounter']['baseCaptureRate'],
         'Encounter Flee Rate': pokemon['encounter']['baseFleeRate'],
-        'Quick Moves': ", ".join(pokemon['quickMoves']).replace("_FAST","").replace("_"," ").title(), # non-Legacy
-        'Charge Moves': ", ".join(pokemon['cinematicMoves']).replace("_"," ").title(),                # non-Legacy
+        'Quick Moves': ", ".join(quickMoves),
+        'Charge Moves': ", ".join(chargeMoves),
     }
 
     # Gender settings are the same for all Formes. Copy the base form gender data
@@ -265,6 +269,14 @@ def getCpMultiplier(gm):
       }
   return cpMultiplier
 
+# TODO tyler: Don't do this. Instead generate a new structure to return in
+# getPokemonStats. Only parse the data once.
+#headerMovesByPokemon = ["Move Name", "Move Type", "Move Class", "Pokemon Name", "Pokemon Type", "Pokemon Type2"]
+def getMovesByPokemon(fastMoves, chargeMoves, pokemonStats):
+  movesByPokemon = None
+  pass
+  return movesByPokemon
+
 
 if __name__ == '__main__':
   # argparse
@@ -286,6 +298,7 @@ if __name__ == '__main__':
   fastMoves, chargeMoves = getCombatMoves(gm)
   pokemonStats = getPokemonStats(gm)
   #cpMultiplier = getCpMultiplier(gm)
+  movesByPokemon = getMovesByPokemon(fastMoves, chargeMoves, pokemonStats)
 
   if args.output == "csv":
     try:
