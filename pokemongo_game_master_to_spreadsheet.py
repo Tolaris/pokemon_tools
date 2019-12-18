@@ -28,7 +28,7 @@ import os.path
 # Row headers
 headerFastMoves = ["Move Name", "Type", "DPT", "EPT", "D+EPT", "PvP Duration", "PvP Power", "PvP Energy", "PvE Power", "PvE Energy", "PvE Duration"]
 headerChargeMoves = ["Move Name", "Type", "PvP Power", "PvP Energy", "PvP DPE", "PvE Power", "PvE Energy", "PvE Duration"]
-headerPokemonStats = ["Name", "Pokedex ID", "Type", "Type2", "Attack", "Defense", "Stamina", "Family", "3rd Move Stardust", "3rd Move Candy", "km Buddy Distance", "Encounter Capture Rate", "Encounter Flee Rate", "Male %", "Female %", "Genderless %", "Quick Moves", "Charge Moves"]
+headerPokemonStats = ["Name", "Pokedex ID", "Type", "Type2", "Attack", "Defense", "Stamina", "Family", "3rd Move Stardust", "3rd Move Candy", "km Buddy Distance", "Encounter Capture Rate", "Encounter Flee Rate", "Male %", "Female %", "Genderless %", "Fast Moves", "Charge Moves"]
 headerMovesByPokemon = ["Move Name", "Move Type", "Move Class", "Pokemon Name", "Pokemon Type", "Pokemon Type2"]
 
 # CSV output filenames
@@ -36,12 +36,14 @@ csvOutputDirectory = "output"
 csvFilenameFastMoves   = "fastMoves.csv"
 csvFilenameChargeMoves = "chargeMoves.csv"
 csvFilenamePokemonStats = "pokemonStats.csv"
+csvFilenameMovesByPokemon = "movesByPokemon.csv"
 
 # Google Sheets output
 sheetsSpreadsheetId = "1HyxMawsvHyxcKVL9a9GKH2as15qdI9HhSCr0Q_hWYnc"
 sheetsTabFastMoves = "Fast"
 sheetsTabChargeMoves = "Charge"
 sheetsTabPokemonStats = "Pokemon"
+sheetsTabMovesByPokemon = "Moves"
 
 def outputDictAsCsv(datadict, header, filename):
   """Output dict as CSV spreadsheet with header."""
@@ -51,6 +53,16 @@ def outputDictAsCsv(datadict, header, filename):
     csvwriter.writeheader()
     for k in sorted(datadict.keys()):
       csvwriter.writerow(datadict[k])
+
+
+def outputRowsAsCsv(rows, header, filename):
+  """Output a list of lists as CSV spreadsheet with header."""
+  import csv
+  with open(filename, 'w', newline='') as csvfile:
+    csvwriter = csv.writer(csvfile)
+    csvwriter.writerow(header)
+    csvwriter.writerows(rows)
+
 
 def getSheetsService():
   """Returns a Google Sheets service, refreshing credentials if required."""
@@ -76,13 +88,36 @@ def getSheetsService():
           pickle.dump(creds, token)
   return build('sheets', 'v4', credentials=creds)
 
+def outputRowsAsSheet(rows, header, spreadsheetId, tabName):
+  """Output header and rows as a Google sheet. Clears sheet of existing values."""
+  cellrange = '{}!A1:Z'.format(tabName)
+  # Call the Sheets API
+  service = getSheetsService()
+  body = {
+      'ranges': [cellrange]
+  }
+  service.spreadsheets().values().batchClear(
+      spreadsheetId=spreadsheetId,
+      body=body
+  ).execute()
+  body = {
+      'values': [header] + rows
+  }
+  service.spreadsheets().values().update(
+      spreadsheetId=spreadsheetId,
+      range=cellrange,
+      valueInputOption='USER_ENTERED',
+      body=body
+  ).execute()
+
+
 def getRowsFromDictInHeaderOrder(D, order):
   """Given a dict and list of columns, return a 2D list ordered by column.
   D's keys are lost and all k:v pairs become column:cell values.
   Input:
     D: the dictionary of key: dict
     order: a list of column headers
-  Returns: a list of lists, sorted by first element, with column headers first.
+  Returns: a list of lists, sorted by first element. The header (order) is not included.
   """
   # build dict of "heading: columnNumber" pairs
   columnOrder = {}
@@ -96,31 +131,14 @@ def getRowsFromDictInHeaderOrder(D, order):
     for k,v in d.items():
       row[columnOrder[k]] = v
     results.append(row)
-  return [order] + sorted(results)
+  return sorted(results)
+
 
 def outputDictAsSheet(datadict, header, spreadsheetId, tabName):
   """Output dict as Google sheet with header. Clears sheet of existing values."""
   rows = getRowsFromDictInHeaderOrder(datadict, header)
-  cellrange = '{}!A1:Z'.format(tabName)
+  outputRowsAsSheet(rows, header, spreadsheetId, tabName)
 
-  # Call the Sheets API
-  service = getSheetsService()
-  body = {
-      'ranges': [cellrange]
-  }
-  service.spreadsheets().values().batchClear(
-      spreadsheetId=spreadsheetId,
-      body=body
-  ).execute()
-  body = {
-      'values': rows
-  }
-  service.spreadsheets().values().update(
-      spreadsheetId=spreadsheetId,
-      range=cellrange,
-      valueInputOption='USER_ENTERED',
-      body=body
-  ).execute()
 
 def getAllFieldsByName(field, gm):
   """Given a field name and GAME_MASTER, return a list of matching dicts."""
@@ -134,18 +152,33 @@ def getAllFieldsByName(field, gm):
       results.append(match)
   return results
 
-def getCombatMoves(gm):
-  """Return two dicts containing fast moves and charge moves."""
+
+def parseGameMaster(gm):
+  """Parse GAME_MASTER data and return useful data structures.
+  Input:
+    gm: a deserialised JSON object from json.load()
+  Returns:
+    fastMoves: a dict of Pokemon fast moves
+    chargeMoves: a dict of Pokemon charge moves
+    pokemonStats: a dict of Pokemon stats
+    movesByPokemon: a table of moves currently available by Pokemon
+  """
   # 'moveSettings': Defines a move's type, VFX, PvE settings. One entry should
   # exist for each move.
   moveSettings = getAllFieldsByName("moveSettings", gm)
   # 'combatMove': Defines PvP settings. Also re-defines a move's type (?), which
   # means type can be different for PvP than for PvE.
   combatMoves = getAllFieldsByName("combatMove", gm)
+  # pokemonSettings: Defines a Pokemon's many stats.
+  pokemonSettings = getAllFieldsByName("pokemonSettings", gm)
+  # genderSettings: Defines a Pokemon's gender distribution.
+  genderSettings = getAllFieldsByName("genderSettings", gm)
 
   # What we'll return
   fastMoves = defaultdict(dict)
   chargeMoves = defaultdict(dict)
+  pokemonStats = defaultdict(dict)
+  movesByPokemon = []
 
   # Parse all moveSettings first, setting initial empty PvP values.
   for pveMove in moveSettings:
@@ -208,17 +241,8 @@ def getCombatMoves(gm):
       chargeMoves[moveName]['PvP Energy'] = pvpMove['energyDelta']
       chargeMoves[moveName]['PvP DPE'] = chargeMoves[moveName]['PvP Power'] / -chargeMoves[moveName]['PvP Energy']
 
-  return fastMoves, chargeMoves
-
-
-def getPokemonStats(gm):
-  """Return a dict containing Pokémon base data."""
-  pokemonSettings = getAllFieldsByName("pokemonSettings", gm)
-  genderSettings = getAllFieldsByName("genderSettings", gm)
-  pokemonStats = defaultdict(dict)
-  movesByPokemon = []
+  # maintain a mapping of Pokemon form to base form, which we'll need later
   formsToBaseForm = {}
-
   for pokemon in pokemonSettings:
     # Formes have multiple entries, one for the "base" form (not a Pokemon) and
     # one for each form like Normal, Alolan. Collect a mapping.
@@ -228,13 +252,18 @@ def getPokemonStats(gm):
     else:
       pokemonName = pokemon['pokemonId'].replace("_"," ").title()
 
-    quickMoves = [x.replace("_FAST","").replace("_"," ").title() for x in pokemon['quickMoves']] # non-Legacy
-    chargeMoves = [x.replace("_"," ").title() for x in pokemon['cinematicMoves']]                # non-Legacy
+    # get currently-available (non-Legacy) moves
+    pokemonFastMoves = [x.replace("_FAST","").replace("_"," ").title() for x in pokemon['quickMoves']]
+    pokemonChargeMoves = [x.replace("_"," ").title() for x in pokemon['cinematicMoves']]
+
+    pokemonType = pokemon['type'].replace("POKEMON_TYPE_","").title()
+    pokemonType2 = pokemon['type2'].replace("POKEMON_TYPE_","").title()
+
     pokemonStats[pokemonName] = {
         'Name': pokemonName,
         'Pokedex ID': int(pokemon['templateId'][1:5]),
-        'Type': pokemon['type'].replace("POKEMON_TYPE_","").title(),
-        'Type2': pokemon['type2'].replace("POKEMON_TYPE_","").title(),
+        'Type': pokemonType,
+        'Type2': pokemonType2,
         'Attack': pokemon['stats']['baseAttack'],
         'Defense': pokemon['stats']['baseDefense'],
         'Stamina': pokemon['stats']['baseStamina'],
@@ -244,9 +273,13 @@ def getPokemonStats(gm):
         'km Buddy Distance': pokemon['kmBuddyDistance'],
         'Encounter Capture Rate': pokemon['encounter']['baseCaptureRate'],
         'Encounter Flee Rate': pokemon['encounter']['baseFleeRate'],
-        'Quick Moves': ", ".join(quickMoves),
-        'Charge Moves': ", ".join(chargeMoves),
+        'Fast Moves': ", ".join(sorted(pokemonFastMoves)),
+        'Charge Moves': ", ".join(sorted(pokemonChargeMoves)),
     }
+
+    for moveName in pokemonFastMoves:
+      movesByPokemon.append([moveName,fastMoves[moveName]['Type'],'Fast',pokemonName,pokemonType,pokemonType2])
+    for moveName in pokemonChargeMoves: movesByPokemon.append([moveName,chargeMoves[moveName]['Type'],'Charge',pokemonName,pokemonType,pokemonType2])
 
     # Gender settings are the same for all Formes. Copy the base form gender data
     # to all Formes.
@@ -267,7 +300,7 @@ def getPokemonStats(gm):
       except KeyError:
         pass
 
-  return pokemonStats
+  return fastMoves, chargeMoves, pokemonStats, sorted(movesByPokemon)
 
 
 if __name__ == '__main__':
@@ -287,9 +320,7 @@ if __name__ == '__main__':
   with open(args.game_master, "r") as fp:
     gm = json.load(fp, object_hook=partial(defaultdict, lambda: ''))
 
-  fastMoves, chargeMoves = getCombatMoves(gm)
-  pokemonStats = getPokemonStats(gm)
-  movesByPokemon = getMovesByPokemon(fastMoves, chargeMoves, pokemonStats)
+  fastMoves, chargeMoves, pokemonStats, movesByPokemon = parseGameMaster(gm)
 
   # outout CSV files
   if args.output == "csv":
@@ -301,6 +332,7 @@ if __name__ == '__main__':
     outputDictAsCsv(fastMoves, headerFastMoves, os.path.join(args.csv_dir, csvFilenameFastMoves))
     outputDictAsCsv(chargeMoves, headerChargeMoves, os.path.join(args.csv_dir, csvFilenameChargeMoves))
     outputDictAsCsv(pokemonStats, headerPokemonStats, os.path.join(args.csv_dir, csvFilenamePokemonStats))
+    outputRowsAsCsv(movesByPokemon, headerMovesByPokemon, os.path.join(args.csv_dir, csvFilenameMovesByPokemon))
 
   # update Google Sheets
   elif args.output == "sheets":
@@ -308,6 +340,7 @@ if __name__ == '__main__':
     outputDictAsSheet(fastMoves, headerFastMoves, args.sheet, sheetsTabFastMoves)
     outputDictAsSheet(chargeMoves, headerChargeMoves, args.sheet, sheetsTabChargeMoves)
     outputDictAsSheet(pokemonStats, headerPokemonStats, args.sheet, sheetsTabPokemonStats)
+    outputRowsAsSheet(movesByPokemon, headerPokemonStats, args.sheet, sheetsTabMovesByPokemon)
 
   # test mode: inspect variables interactively
   # python3 -i pokemongo_game_master_to_spreadsheet.py -o test ../pokemongo-game-master/versions/latest/GAME_MASTER.json
