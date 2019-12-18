@@ -15,6 +15,7 @@
 
 from collections import defaultdict
 from functools import partial
+from pprint import PrettyPrinter
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -138,43 +139,18 @@ def getAllFieldsByName(field, gm):
 
 def getCombatMoves(gm):
   """Return two dicts containing fast moves and charge moves."""
-  combatMoves = getAllFieldsByName("combatMove", gm)
+  # 'moveSettings': Defines a move's type, VFX, PvE settings. One entry should
+  # exist for each move.
   moveSettings = getAllFieldsByName("moveSettings", gm)
+  # 'combatMove': Defines PvP settings. Also re-defines a move's type (?), which
+  # means type can be different for PvP than for PvE.
+  combatMoves = getAllFieldsByName("combatMove", gm)
+
+  # What we'll return
   fastMoves = defaultdict(dict)
   chargeMoves = defaultdict(dict)
 
-  for pvpMove in combatMoves:
-    # automatically create missing fields with 0 instead of default defined in
-    # json.load()
-    pvpMove = defaultdict(int,pvpMove)
-
-    # Fast moves
-    if pvpMove['uniqueId'][-5:] == "_FAST":
-      moveName = pvpMove['uniqueId'][0:-5].replace("_"," ").title()
-      fastMoves[moveName] = {
-          'Move Name': moveName,
-          'Type': pvpMove['type'].replace("POKEMON_TYPE_","").title(),
-          'PvP Power':  pvpMove['power'],
-          'PvP Energy': pvpMove['energyDelta'],
-      }
-      # "durationTurns" is "number of additional turns". Add 1 to it to count
-      # the current turn.
-      fastMoves[moveName]['PvP Duration'] = pvpMove['durationTurns'] + 1
-      fastMoves[moveName]['DPT'] = fastMoves[moveName]['PvP Power'] / fastMoves[moveName]['PvP Duration']
-      fastMoves[moveName]['EPT'] = fastMoves[moveName]['PvP Energy'] / fastMoves[moveName]['PvP Duration']
-      fastMoves[moveName]['D+EPT'] = (fastMoves[moveName]['PvP Power'] + fastMoves[moveName]['PvP Energy']) / fastMoves[moveName]['PvP Duration']
-
-    # Charge moves
-    else:
-      moveName = pvpMove['uniqueId'].replace("_"," ").title()
-      chargeMoves[moveName] = {
-          'Move Name': moveName,
-          'Type': pvpMove['type'].replace("POKEMON_TYPE_","").title(),
-          'PvP Power':  pvpMove['power'],
-          'PvP Energy': pvpMove['energyDelta'],
-      }
-      chargeMoves[moveName]['PvP DPE'] = chargeMoves[moveName]['PvP Power'] / -chargeMoves[moveName]['PvP Energy']
-
+  # Parse all moveSettings first, setting initial empty PvP values.
   for pveMove in moveSettings:
     # automatically create missing fields with 0 instead of default defined in
     # json.load()
@@ -183,18 +159,57 @@ def getCombatMoves(gm):
     # Fast moves
     if pveMove['movementId'][-5:] == "_FAST":
       moveName = pveMove['movementId'][0:-5].replace("_"," ").title()
-      fastMoves[moveName]['Move Name'] = moveName
-      fastMoves[moveName]['PvE Power'] = pveMove['power']
-      fastMoves[moveName]['PvE Energy'] = pveMove['energyDelta']
-      fastMoves[moveName]['PvE Duration'] = pveMove['durationMs']
-
+      fastMoves[moveName] = {
+          'Move Name': moveName,
+          'Type': pveMove['pokemonType'].replace("POKEMON_TYPE_","").title(),
+          'PvP Power':  '',
+          'PvP Energy': '',
+          'PvP Duration': '',
+          'DPT': '',
+          'EPT': '',
+          'D+EPT': '',
+          'PvE Power': pveMove['power'],
+          'PvE Energy': pveMove['energyDelta'],
+          'PvE Duration': pveMove['durationMs']
+      }
     # Charge moves
     else:
       moveName = pveMove['movementId'].replace("_"," ").title()
-      chargeMoves[moveName]['Move Name'] = moveName
-      chargeMoves[moveName]['PvE Power'] = pveMove['power']
-      chargeMoves[moveName]['PvE Energy'] = pveMove['energyDelta']
-      chargeMoves[moveName]['PvE Duration'] = pveMove['durationMs']
+      chargeMoves[moveName] = {
+          'Move Name': moveName,
+          'Type': pveMove['pokemonType'].replace("POKEMON_TYPE_","").title(),
+          'PvP Power':  '',
+          'PvP Energy': '',
+          'PvP DPE': '',
+          'PvE Power': pveMove['power'],
+          'PvE Energy': pveMove['energyDelta'],
+          'PvE Duration': pveMove['durationMs']
+      }
+
+  # Now parse all combatMoves, which may be absent for any given move.
+  for pvpMove in combatMoves:
+    # automatically create missing fields with 0 instead of default defined in
+    # json.load()
+    pvpMove = defaultdict(int,pvpMove)
+
+    # Fast moves
+    if pvpMove['uniqueId'][-5:] == "_FAST":
+      moveName = pvpMove['uniqueId'][0:-5].replace("_"," ").title()
+      fastMoves[moveName]['PvP Power'] = pvpMove['power']
+      fastMoves[moveName]['PvP Energy'] = pvpMove['energyDelta']
+      # "durationTurns" is "number of additional turns".
+      # To count the total turns, add 1.
+      fastMoves[moveName]['PvP Duration'] = pvpMove['durationTurns'] + 1
+      fastMoves[moveName]['DPT'] = fastMoves[moveName]['PvP Power'] / fastMoves[moveName]['PvP Duration']
+      fastMoves[moveName]['EPT'] = fastMoves[moveName]['PvP Energy'] / fastMoves[moveName]['PvP Duration']
+      fastMoves[moveName]['D+EPT'] = (fastMoves[moveName]['PvP Power'] + fastMoves[moveName]['PvP Energy']) / fastMoves[moveName]['PvP Duration']
+
+    # Charge moves
+    else:
+      moveName = pvpMove['uniqueId'].replace("_"," ").title()
+      chargeMoves[moveName]['PvP Power'] = pvpMove['power']
+      chargeMoves[moveName]['PvP Energy'] = pvpMove['energyDelta']
+      chargeMoves[moveName]['PvP DPE'] = chargeMoves[moveName]['PvP Power'] / -chargeMoves[moveName]['PvP Energy']
 
   return fastMoves, chargeMoves
 
@@ -269,6 +284,7 @@ def getCpMultiplier(gm):
       }
   return cpMultiplier
 
+# TODO tyler: generate a list of "moveName": "pokemon1", "pokemon2", ...
 # TODO tyler: Don't do this. Instead generate a new structure to return in
 # getPokemonStats. Only parse the data once.
 #headerMovesByPokemon = ["Move Name", "Move Type", "Move Class", "Pokemon Name", "Pokemon Type", "Pokemon Type2"]
