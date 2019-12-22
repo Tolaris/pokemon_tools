@@ -340,7 +340,7 @@ if __name__ == '__main__':
     outputDictAsSheet(fastMoves, headerFastMoves, args.sheet, sheetsTabFastMoves)
     outputDictAsSheet(chargeMoves, headerChargeMoves, args.sheet, sheetsTabChargeMoves)
     outputDictAsSheet(pokemonStats, headerPokemonStats, args.sheet, sheetsTabPokemonStats)
-    outputRowsAsSheet(movesByPokemon, headerPokemonStats, args.sheet, sheetsTabMovesByPokemon)
+    outputRowsAsSheet(movesByPokemon, headerMovesByPokemon, args.sheet, sheetsTabMovesByPokemon)
 
   # test mode: inspect variables interactively
   # python3 -i pokemongo_game_master_to_spreadsheet.py -o test ../pokemongo-game-master/versions/latest/GAME_MASTER.json
