@@ -48,6 +48,7 @@ Acid Spray,Poison,Charge,Arbok Normal,Poison,
 Acid Spray,Poison,Charge,Arbok Purified,Poison,
 Acid Spray,Poison,Charge,Arbok Shadow,Poison,
 Acid Spray,Poison,Charge,Eelektross,Electric,
+Acid Spray,Poison,Charge,Escavalier,Bug,Steel
 Acid Spray,Poison,Charge,Ferrothorn,Grass,Steel
 Acid Spray,Poison,Charge,Garbodor,Poison,
 Acid Spray,Poison,Charge,Muk,Poison,
@@ -858,6 +859,7 @@ Bug Buzz,Bug,Charge,Wormadam Plant,Bug,Grass
 Bug Buzz,Bug,Charge,Wormadam Sandy,Bug,Ground
 Bug Buzz,Bug,Charge,Wormadam Trash,Bug,Steel
 Bug Buzz,Bug,Charge,Yanmega,Bug,Flying
+Bulldoze,Ground,Charge,Boldore,Rock,
 Bulldoze,Ground,Charge,Bronzong,Steel,Psychic
 Bulldoze,Ground,Charge,Cradily,Rock,Grass
 Bulldoze,Ground,Charge,Cranidos,Rock,
@@ -876,6 +878,7 @@ Bulldoze,Ground,Charge,Rhyhorn,Ground,Rock
 Bulldoze,Ground,Charge,Rhyhorn Normal,Ground,Rock
 Bulldoze,Ground,Charge,Rhyhorn Purified,Ground,Rock
 Bulldoze,Ground,Charge,Rhyhorn Shadow,Ground,Rock
+Bulldoze,Ground,Charge,Roggenrola,Rock,
 Bulldoze,Ground,Charge,Sandile,Ground,Dark
 Bulldoze,Ground,Charge,Sandslash,Ground,
 Bulldoze,Ground,Charge,Sandslash Alola,Ice,Steel
@@ -945,7 +948,6 @@ Charge Beam,Electric,Fast,Flaaffy,Electric,
 Charge Beam,Electric,Fast,Flaaffy Normal,Electric,
 Charge Beam,Electric,Fast,Flaaffy Purified,Electric,
 Charge Beam,Electric,Fast,Flaaffy Shadow,Electric,
-Charge Beam,Electric,Fast,Galvantula,Bug,Electric
 Charge Beam,Electric,Fast,Gardevoir,Psychic,Fairy
 Charge Beam,Electric,Fast,Gardevoir Normal,Psychic,Fairy
 Charge Beam,Electric,Fast,Gardevoir Purified,Psychic,Fairy
@@ -1153,6 +1155,7 @@ Counter,Fighting,Fast,Breloom,Grass,Fighting
 Counter,Fighting,Fast,Conkeldurr,Fighting,
 Counter,Fighting,Fast,Deoxys Defense,Psychic,
 Counter,Fighting,Fast,Donphan,Ground,
+Counter,Fighting,Fast,Escavalier,Bug,Steel
 Counter,Fighting,Fast,Hariyama,Fighting,
 Counter,Fighting,Fast,Haxorus,Dragon,
 Counter,Fighting,Fast,Heracross,Bug,Fighting
@@ -1523,6 +1526,7 @@ Discharge,Electric,Charge,Flaaffy,Electric,
 Discharge,Electric,Charge,Flaaffy Normal,Electric,
 Discharge,Electric,Charge,Flaaffy Purified,Electric,
 Discharge,Electric,Charge,Flaaffy Shadow,Electric,
+Discharge,Electric,Charge,Galvantula,Bug,Electric
 Discharge,Electric,Charge,Jolteon,Electric,
 Discharge,Electric,Charge,Joltik,Bug,Electric
 Discharge,Electric,Charge,Klink,Steel,
@@ -3761,7 +3765,6 @@ Peck,Flying,Fast,Altaria,Dragon,Flying
 Peck,Flying,Fast,Chatot,Normal,Flying
 Peck,Flying,Fast,Combusken,Fire,Fighting
 Peck,Flying,Fast,Doduo,Normal,Flying
-Peck,Flying,Fast,Escavalier,Bug,Steel
 Peck,Flying,Fast,Fearow,Normal,Flying
 Peck,Flying,Fast,Goldeen,Water,
 Peck,Flying,Fast,Honchkrow,Dark,Flying
@@ -3988,7 +3991,6 @@ Power Gem,Rock,Charge,Persian,Normal,
 Power Gem,Rock,Charge,Persian Normal,Normal,
 Power Gem,Rock,Charge,Persian Purified,Normal,
 Power Gem,Rock,Charge,Persian Shadow,Normal,
-Power Gem,Rock,Charge,Roggenrola,Rock,
 Power Gem,Rock,Charge,Sableye,Dark,Ghost
 Power Gem,Rock,Charge,Sableye Normal,Dark,Ghost
 Power Gem,Rock,Charge,Sableye Purified,Dark,Ghost
@@ -5049,7 +5051,6 @@ Snarl,Dark,Fast,Weavile Normal,Dark,Ice
 Snarl,Dark,Fast,Weavile Purified,Dark,Ice
 Snarl,Dark,Fast,Weavile Shadow,Dark,Ice
 Snarl,Dark,Fast,Zoroark,Dark,
-Solar Beam,Grass,Charge,Boldore,Rock,
 Solar Beam,Grass,Charge,Camerupt,Fire,Ground
 Solar Beam,Grass,Charge,Castform Sunny,Fire,
 Solar Beam,Grass,Charge,Cherrim,Grass,
@@ -5242,7 +5243,6 @@ Stone Edge,Rock,Charge,Flygon,Ground,Dragon
 Stone Edge,Rock,Charge,Flygon Normal,Ground,Dragon
 Stone Edge,Rock,Charge,Flygon Purified,Ground,Dragon
 Stone Edge,Rock,Charge,Flygon Shadow,Ground,Dragon
-Stone Edge,Rock,Charge,Gigalith,Rock,
 Stone Edge,Rock,Charge,Golem,Rock,Ground
 Stone Edge,Rock,Charge,Golem Alola,Rock,Electric
 Stone Edge,Rock,Charge,Golem Normal,Rock,Ground
@@ -5368,6 +5368,7 @@ Sucker Punch,Dark,Fast,Mismagius,Ghost,
 Sucker Punch,Dark,Fast,Purrloin,Dark,
 Sucker Punch,Dark,Fast,Spinda,Normal,
 Sucker Punch,Dark,Fast,Spiritomb,Ghost,Dark
+Super Power,Fighting,Charge,Gigalith,Rock,
 Super Power,Fighting,Charge,Hariyama,Fighting,
 Super Power,Fighting,Charge,Melmetal,Steel,
 Super Power,Fighting,Charge,Pinsir,Bug,
@@ -5634,7 +5635,6 @@ Thunder,Electric,Charge,Electivire Normal,Electric,
 Thunder,Electric,Charge,Electivire Purified,Electric,
 Thunder,Electric,Charge,Electivire Shadow,Electric,
 Thunder,Electric,Charge,Ferrothorn,Grass,Steel
-Thunder,Electric,Charge,Galvantula,Bug,Electric
 Thunder,Electric,Charge,Jolteon,Electric,
 Thunder,Electric,Charge,Kecleon,Normal,
 Thunder,Electric,Charge,Kyogre,Water,
@@ -5900,6 +5900,7 @@ Volt Switch,Electric,Fast,Ampharos Normal,Electric,
 Volt Switch,Electric,Fast,Ampharos Purified,Electric,
 Volt Switch,Electric,Fast,Ampharos Shadow,Electric,
 Volt Switch,Electric,Fast,Electrode,Electric,
+Volt Switch,Electric,Fast,Galvantula,Bug,Electric
 Volt Switch,Electric,Fast,Geodude Alola,Rock,Electric
 Volt Switch,Electric,Fast,Golem Alola,Rock,Electric
 Volt Switch,Electric,Fast,Graveler Alola,Rock,Electric
@@ -6177,7 +6178,6 @@ X Scissor,Bug,Charge,Crustle,Bug,Rock
 X Scissor,Bug,Charge,Dewott,Water,
 X Scissor,Bug,Charge,Durant,Bug,Steel
 X Scissor,Bug,Charge,Dwebble,Bug,Rock
-X Scissor,Bug,Charge,Escavalier,Bug,Steel
 X Scissor,Bug,Charge,Genesect,Bug,Steel
 X Scissor,Bug,Charge,Genesect Burn,Bug,Steel
 X Scissor,Bug,Charge,Genesect Chill,Bug,Steel
@@ -6202,6 +6202,7 @@ X Scissor,Bug,Charge,Scizor,Bug,Steel
 X Scissor,Bug,Charge,Scizor Normal,Bug,Steel
 X Scissor,Bug,Charge,Scizor Purified,Bug,Steel
 X Scissor,Bug,Charge,Scizor Shadow,Bug,Steel
+X Scissor,Bug,Charge,Scolipede,Bug,Poison
 X Scissor,Bug,Charge,Scyther,Bug,Flying
 X Scissor,Bug,Charge,Scyther Normal,Bug,Flying
 X Scissor,Bug,Charge,Scyther Purified,Bug,Flying
