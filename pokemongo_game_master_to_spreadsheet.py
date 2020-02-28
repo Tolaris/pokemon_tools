@@ -27,7 +27,7 @@ import os.path
 
 # Row headers
 headerFastMoves = ["Move Name", "Type", "DPT", "EPT", "D+EPT", "PvP Duration", "PvP Power", "PvP Energy", "PvE Power", "PvE Energy", "PvE Duration"]
-headerChargeMoves = ["Move Name", "Type", "PvP Power", "PvP Energy", "PvP DPE", "PvE Power", "PvE Energy", "PvE Duration"]
+headerChargeMoves = ["Move Name", "Type", "PvP Power", "PvP Energy", "PvP DPE", "PvP Buff", "PvE Power", "PvE Energy", "PvE Duration"]
 headerPokemonStats = ["Name", "Pokedex ID", "Type", "Type2", "Attack", "Defense", "Stamina", "Family", "3rd Move Stardust", "3rd Move Candy", "km Buddy Distance", "Encounter Capture Rate", "Encounter Flee Rate", "Male %", "Female %", "Genderless %", "Fast Moves", "Charge Moves"]
 headerMovesByPokemon = ["Move Name", "Move Type", "Move Class", "Pokemon Name", "Pokemon Type", "Pokemon Type2"]
 
@@ -45,15 +45,6 @@ sheetsTabChargeMoves = "Charge"
 sheetsTabPokemonStats = "Pokemon"
 sheetsTabMovesByPokemon = "Moves"
 
-def outputDictAsCsv(datadict, header, filename):
-  """Output dict as CSV spreadsheet with header."""
-  import csv
-  with open(filename, 'w', newline='') as csvfile:
-    csvwriter = csv.DictWriter(csvfile, fieldnames=header)
-    csvwriter.writeheader()
-    for k in sorted(datadict.keys()):
-      csvwriter.writerow(datadict[k])
-
 
 def outputRowsAsCsv(rows, header, filename):
   """Output a list of lists as CSV spreadsheet with header."""
@@ -62,6 +53,11 @@ def outputRowsAsCsv(rows, header, filename):
     csvwriter = csv.writer(csvfile)
     csvwriter.writerow(header)
     csvwriter.writerows(rows)
+
+def outputDictAsCsv(datadict, header, filename, sortkey=None):
+  """Output dict as CSV spreadsheet with header."""
+  rows = getRowsFromDictInHeaderOrder(datadict, header, sortkey)
+  outputRowsAsCsv(rows, header, filename)
 
 
 def getSheetsService():
@@ -88,6 +84,7 @@ def getSheetsService():
           pickle.dump(creds, token)
   return build('sheets', 'v4', credentials=creds)
 
+
 def outputRowsAsSheet(rows, header, spreadsheetId, tabName):
   """Output header and rows as a Google sheet. Clears sheet of existing values."""
   cellrange = '{}!A1:Z'.format(tabName)
@@ -111,13 +108,14 @@ def outputRowsAsSheet(rows, header, spreadsheetId, tabName):
   ).execute()
 
 
-def getRowsFromDictInHeaderOrder(D, order):
+def getRowsFromDictInHeaderOrder(D, order, sortkey=None):
   """Given a dict and list of columns, return a 2D list ordered by column.
   D's keys are lost and all k:v pairs become column:cell values.
   Input:
     D: the dictionary of key: dict
     order: a list of column headers
-  Returns: a list of lists, sorted by first element. The header (order) is not included.
+  Returns: a list of lists, sorted by sortkey (default is first element)
+    To sort on column 1,0: pass in something like lambda x: (x[1],x[0])
   """
   # build dict of "heading: columnNumber" pairs
   columnOrder = {}
@@ -127,16 +125,16 @@ def getRowsFromDictInHeaderOrder(D, order):
   # comprehensions. It'll probably be faster.
   results = []
   for d in D.values():
-    row = ['' for _ in range(len(d))]
+    row = ['' for _ in range(len(order))]
     for k,v in d.items():
       row[columnOrder[k]] = v
     results.append(row)
-  return sorted(results)
+  return sorted(results,key=sortkey)
 
 
-def outputDictAsSheet(datadict, header, spreadsheetId, tabName):
+def outputDictAsSheet(datadict, header, spreadsheetId, tabName, sortkey=None):
   """Output dict as Google sheet with header. Clears sheet of existing values."""
-  rows = getRowsFromDictInHeaderOrder(datadict, header)
+  rows = getRowsFromDictInHeaderOrder(datadict, header, sortkey)
   outputRowsAsSheet(rows, header, spreadsheetId, tabName)
 
 
@@ -153,8 +151,36 @@ def getAllFieldsByName(field, gm):
   return results
 
 
+def getPvpBuffText(buff):
+  """Given a snippet of Json representing a buff, return a short useful description."""
+  buff_fields = []
+  if type(buff) != defaultdict:
+    return ""
+  for k in buff:
+    if k == "attackerAttackStatStageChange":
+      buff_fields.append("ATT {}".format(buff[k]))
+    elif k == "attackerDefenseStatStageChange":
+      buff_fields.append("DEF {}".format(buff[k]))
+    elif k == "targetAttackStatStageChange":
+      buff_fields.append("Opp ATT {}".format(buff[k]))
+    elif k == "targetDefenseStatStageChange":
+      buff_fields.append("Opp DEF {}".format(buff[k]))
+    elif k == "buffActivationChance":
+      if buff[k] == 1.0:
+        pass
+      else:
+        buff_fields.append("{:.1%}".format(buff[k]))
+    else:
+      buff_fields.append("{} {}".format(k,buff[k]))
+  return ", ".join(buff_fields)
+
+
 def parseGameMaster(gm):
   """Parse GAME_MASTER data and return useful data structures.
+
+  This should use real classes, but we are going to output to spreadsheets, so
+  use a simple dict-of-dict structure, keyed by {move name, column header}.
+
   Input:
     gm: a deserialised JSON object from json.load()
   Returns:
@@ -239,7 +265,8 @@ def parseGameMaster(gm):
       moveName = pvpMove['uniqueId'].replace("_"," ").title()
       chargeMoves[moveName]['PvP Power'] = pvpMove['power']
       chargeMoves[moveName]['PvP Energy'] = pvpMove['energyDelta']
-      chargeMoves[moveName]['PvP DPE'] = chargeMoves[moveName]['PvP Power'] / -chargeMoves[moveName]['PvP Energy']
+      chargeMoves[moveName]['PvP DPE'] = round(chargeMoves[moveName]['PvP Power'] / -chargeMoves[moveName]['PvP Energy'],2)
+      chargeMoves[moveName]['PvP Buff'] = getPvpBuffText(pvpMove['buffs'])
 
   # maintain a mapping of Pokemon form to base form, which we'll need later
   formsToBaseForm = {}
@@ -329,16 +356,16 @@ if __name__ == '__main__':
     except FileExistsError:
       pass
     print("Outputing CSV files in {}".format(os.path.abspath(args.csv_dir)))
-    outputDictAsCsv(fastMoves, headerFastMoves, os.path.join(args.csv_dir, csvFilenameFastMoves))
-    outputDictAsCsv(chargeMoves, headerChargeMoves, os.path.join(args.csv_dir, csvFilenameChargeMoves))
+    outputDictAsCsv(fastMoves, headerFastMoves, os.path.join(args.csv_dir, csvFilenameFastMoves), lambda x: (x[1],x[0]))
+    outputDictAsCsv(chargeMoves, headerChargeMoves, os.path.join(args.csv_dir, csvFilenameChargeMoves), lambda x: (x[1],x[0]))
     outputDictAsCsv(pokemonStats, headerPokemonStats, os.path.join(args.csv_dir, csvFilenamePokemonStats))
     outputRowsAsCsv(movesByPokemon, headerMovesByPokemon, os.path.join(args.csv_dir, csvFilenameMovesByPokemon))
 
   # update Google Sheets
   elif args.output == "sheets":
     print("Updating https://docs.google.com/spreadsheets/d/{}".format(args.sheet))
-    outputDictAsSheet(fastMoves, headerFastMoves, args.sheet, sheetsTabFastMoves)
-    outputDictAsSheet(chargeMoves, headerChargeMoves, args.sheet, sheetsTabChargeMoves)
+    outputDictAsSheet(fastMoves, headerFastMoves, args.sheet, sheetsTabFastMoves, lambda x: (x[1],x[0]))
+    outputDictAsSheet(chargeMoves, headerChargeMoves, args.sheet, sheetsTabChargeMoves, lambda x: (x[1],x[0]))
     outputDictAsSheet(pokemonStats, headerPokemonStats, args.sheet, sheetsTabPokemonStats)
     outputRowsAsSheet(movesByPokemon, headerMovesByPokemon, args.sheet, sheetsTabMovesByPokemon)
 

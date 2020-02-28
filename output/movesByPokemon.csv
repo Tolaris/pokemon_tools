@@ -201,6 +201,9 @@ Ancient Power,Rock,Charge,Bayleef,Grass,
 Ancient Power,Rock,Charge,Carracosta,Water,Rock
 Ancient Power,Rock,Charge,Cranidos,Rock,
 Ancient Power,Rock,Charge,Exeggcute,Grass,Psychic
+Ancient Power,Rock,Charge,Exeggcute Normal,Grass,Psychic
+Ancient Power,Rock,Charge,Exeggcute Purified,Grass,Psychic
+Ancient Power,Rock,Charge,Exeggcute Shadow,Grass,Psychic
 Ancient Power,Rock,Charge,Giratina,Ghost,Dragon
 Ancient Power,Rock,Charge,Giratina Altered,Ghost,Dragon
 Ancient Power,Rock,Charge,Golem,Rock,Ground
@@ -222,7 +225,13 @@ Ancient Power,Rock,Charge,Moltres Normal,Fire,Flying
 Ancient Power,Rock,Charge,Moltres Purified,Fire,Flying
 Ancient Power,Rock,Charge,Moltres Shadow,Fire,Flying
 Ancient Power,Rock,Charge,Omanyte,Rock,Water
+Ancient Power,Rock,Charge,Omanyte Normal,Rock,Water
+Ancient Power,Rock,Charge,Omanyte Purified,Rock,Water
+Ancient Power,Rock,Charge,Omanyte Shadow,Rock,Water
 Ancient Power,Rock,Charge,Omastar,Rock,Water
+Ancient Power,Rock,Charge,Omastar Normal,Rock,Water
+Ancient Power,Rock,Charge,Omastar Purified,Rock,Water
+Ancient Power,Rock,Charge,Omastar Shadow,Rock,Water
 Ancient Power,Rock,Charge,Pupitar,Rock,Ground
 Ancient Power,Rock,Charge,Pupitar Normal,Rock,Ground
 Ancient Power,Rock,Charge,Pupitar Purified,Rock,Ground
@@ -248,10 +257,13 @@ Aqua Jet,Water,Charge,Basculin Blue Striped,Water,
 Aqua Jet,Water,Charge,Basculin Red Striped,Water,
 Aqua Jet,Water,Charge,Buizel,Water,
 Aqua Jet,Water,Charge,Carvanha,Water,Dark
+Aqua Jet,Water,Charge,Carvanha Normal,Water,Dark
+Aqua Jet,Water,Charge,Carvanha Purified,Water,Dark
+Aqua Jet,Water,Charge,Carvanha Shadow,Water,Dark
 Aqua Jet,Water,Charge,Corphish,Water,
 Aqua Jet,Water,Charge,Floatzel,Water,
 Aqua Jet,Water,Charge,Kabuto,Rock,Water
-Aqua Jet,Water,Charge,Keldeo Ordinary,Water,Fighting
+Aqua Jet,Water,Charge,Keldeo,Water,Fighting
 Aqua Jet,Water,Charge,Keldeo Ordinary,Water,Fighting
 Aqua Jet,Water,Charge,Keldeo Resolute,Water,Fighting
 Aqua Jet,Water,Charge,Luvdisc,Water,
@@ -330,7 +342,13 @@ Astonish,Ghost,Fast,Haunter,Ghost,Poison
 Astonish,Ghost,Fast,Lampent,Ghost,Fire
 Astonish,Ghost,Fast,Litwick,Ghost,Fire
 Astonish,Ghost,Fast,Mawile,Steel,Fairy
+Astonish,Ghost,Fast,Mawile Normal,Steel,Fairy
+Astonish,Ghost,Fast,Mawile Purified,Steel,Fairy
+Astonish,Ghost,Fast,Mawile Shadow,Steel,Fairy
 Astonish,Ghost,Fast,Misdreavus,Ghost,
+Astonish,Ghost,Fast,Misdreavus Normal,Ghost,
+Astonish,Ghost,Fast,Misdreavus Purified,Ghost,
+Astonish,Ghost,Fast,Misdreavus Shadow,Ghost,
 Astonish,Ghost,Fast,Rotom,Electric,Ghost
 Astonish,Ghost,Fast,Rotom Fan,Electric,Flying
 Astonish,Ghost,Fast,Rotom Frost,Electric,Ice
@@ -399,6 +417,9 @@ Bite,Dark,Fast,Blastoise Purified,Water,
 Bite,Dark,Fast,Blastoise Shadow,Water,
 Bite,Dark,Fast,Carnivine,Grass,
 Bite,Dark,Fast,Carvanha,Water,Dark
+Bite,Dark,Fast,Carvanha Normal,Water,Dark
+Bite,Dark,Fast,Carvanha Purified,Water,Dark
+Bite,Dark,Fast,Carvanha Shadow,Water,Dark
 Bite,Dark,Fast,Crobat,Poison,Flying
 Bite,Dark,Fast,Crobat Normal,Poison,Flying
 Bite,Dark,Fast,Crobat Purified,Poison,Flying
@@ -444,6 +465,9 @@ Bite,Dark,Fast,Larvitar Shadow,Rock,Ground
 Bite,Dark,Fast,Loudred,Normal,
 Bite,Dark,Fast,Luxio,Electric,
 Bite,Dark,Fast,Mawile,Steel,Fairy
+Bite,Dark,Fast,Mawile Normal,Steel,Fairy
+Bite,Dark,Fast,Mawile Purified,Steel,Fairy
+Bite,Dark,Fast,Mawile Shadow,Steel,Fairy
 Bite,Dark,Fast,Meowth,Normal,
 Bite,Dark,Fast,Meowth Alola,Dark,
 Bite,Dark,Fast,Meowth Normal,Normal,
@@ -470,6 +494,9 @@ Bite,Dark,Fast,Salamence Purified,Dragon,Flying
 Bite,Dark,Fast,Salamence Shadow,Dragon,Flying
 Bite,Dark,Fast,Sandile,Ground,Dark
 Bite,Dark,Fast,Sharpedo,Water,Dark
+Bite,Dark,Fast,Sharpedo Normal,Water,Dark
+Bite,Dark,Fast,Sharpedo Purified,Water,Dark
+Bite,Dark,Fast,Sharpedo Shadow,Water,Dark
 Bite,Dark,Fast,Simipour,Water,
 Bite,Dark,Fast,Simisage,Grass,
 Bite,Dark,Fast,Simisear,Fire,
@@ -623,6 +650,8 @@ Body Slam,Normal,Charge,Turtwig Shadow,Grass,
 Body Slam,Normal,Charge,Vigoroth,Normal,
 Body Slam,Normal,Charge,Vulpix,Fire,
 Body Slam,Normal,Charge,Vulpix Normal,Fire,
+Body Slam,Normal,Charge,Vulpix Purified,Fire,
+Body Slam,Normal,Charge,Vulpix Shadow,Fire,
 Body Slam,Normal,Charge,Wailmer,Water,
 Body Slam,Normal,Charge,Wooper,Water,Ground
 Body Slam,Normal,Charge,Zweilous,Dark,Dragon
@@ -691,8 +720,12 @@ Bubble,Water,Fast,Chinchou,Water,Electric
 Bubble,Water,Fast,Corphish,Water,
 Bubble,Water,Fast,Corsola,Water,Rock
 Bubble,Water,Fast,Frillish,Water,Ghost
+Bubble,Water,Fast,Frillish Female,Water,Ghost
+Bubble,Water,Fast,Frillish Normal,Water,Ghost
 Bubble,Water,Fast,Horsea,Water,
 Bubble,Water,Fast,Jellicent,Water,Ghost
+Bubble,Water,Fast,Jellicent Female,Water,Ghost
+Bubble,Water,Fast,Jellicent Normal,Water,Ghost
 Bubble,Water,Fast,Kingler,Water,
 Bubble,Water,Fast,Kingler Normal,Water,
 Bubble,Water,Fast,Kingler Purified,Water,
@@ -748,6 +781,8 @@ Bubble Beam,Water,Charge,Golduck Purified,Water,
 Bubble Beam,Water,Charge,Golduck Shadow,Water,
 Bubble Beam,Water,Charge,Horsea,Water,
 Bubble Beam,Water,Charge,Jellicent,Water,Ghost
+Bubble Beam,Water,Charge,Jellicent Female,Water,Ghost
+Bubble Beam,Water,Charge,Jellicent Normal,Water,Ghost
 Bubble Beam,Water,Charge,Krabby,Water,
 Bubble Beam,Water,Charge,Krabby Normal,Water,
 Bubble Beam,Water,Charge,Krabby Purified,Water,
@@ -759,6 +794,9 @@ Bubble Beam,Water,Charge,Mantine,Water,Flying
 Bubble Beam,Water,Charge,Marill,Water,Fairy
 Bubble Beam,Water,Charge,Masquerain,Bug,Flying
 Bubble Beam,Water,Charge,Omanyte,Rock,Water
+Bubble Beam,Water,Charge,Omanyte Normal,Rock,Water
+Bubble Beam,Water,Charge,Omanyte Purified,Rock,Water
+Bubble Beam,Water,Charge,Omanyte Shadow,Rock,Water
 Bubble Beam,Water,Charge,Phione,Water,
 Bubble Beam,Water,Charge,Piplup,Water,
 Bubble Beam,Water,Charge,Poliwag,Water,
@@ -776,6 +814,9 @@ Bubble Beam,Water,Charge,Shellder Purified,Water,
 Bubble Beam,Water,Charge,Shellder Shadow,Water,
 Bubble Beam,Water,Charge,Staryu,Water,
 Bubble Beam,Water,Charge,Suicune,Water,
+Bubble Beam,Water,Charge,Suicune Normal,Water,
+Bubble Beam,Water,Charge,Suicune Purified,Water,
+Bubble Beam,Water,Charge,Suicune Shadow,Water,
 Bubble Beam,Water,Charge,Surskit,Bug,Water
 Bubble Beam,Water,Charge,Swanna,Water,Flying
 Bubble Beam,Water,Charge,Tentacool,Water,Poison
@@ -805,6 +846,9 @@ Bug Bite,Bug,Fast,Nincada,Bug,Ground
 Bug Bite,Bug,Fast,Paras,Bug,Grass
 Bug Bite,Bug,Fast,Pineco,Bug,
 Bug Bite,Bug,Fast,Pinsir,Bug,
+Bug Bite,Bug,Fast,Pinsir Normal,Bug,
+Bug Bite,Bug,Fast,Pinsir Purified,Bug,
+Bug Bite,Bug,Fast,Pinsir Shadow,Bug,
 Bug Bite,Bug,Fast,Scolipede,Bug,Poison
 Bug Bite,Bug,Fast,Sewaddle,Bug,Grass
 Bug Bite,Bug,Fast,Shedinja,Bug,Ghost
@@ -901,6 +945,9 @@ Bullet Punch,Steel,Fast,Hitmonchan Shadow,Fighting,
 Bullet Punch,Steel,Fast,Lucario,Fighting,Steel
 Bullet Punch,Steel,Fast,Machamp,Fighting,
 Bullet Punch,Steel,Fast,Metagross,Steel,Psychic
+Bullet Punch,Steel,Fast,Metagross Normal,Steel,Psychic
+Bullet Punch,Steel,Fast,Metagross Purified,Steel,Psychic
+Bullet Punch,Steel,Fast,Metagross Shadow,Steel,Psychic
 Bullet Punch,Steel,Fast,Scizor,Bug,Steel
 Bullet Punch,Steel,Fast,Scizor Normal,Bug,Steel
 Bullet Punch,Steel,Fast,Scizor Purified,Bug,Steel
@@ -911,9 +958,14 @@ Bullet Seed,Grass,Fast,Cherrim Overcast,Grass,
 Bullet Seed,Grass,Fast,Cherrim Sunny,Grass,
 Bullet Seed,Grass,Fast,Cherubi,Grass,
 Bullet Seed,Grass,Fast,Exeggcute,Grass,Psychic
+Bullet Seed,Grass,Fast,Exeggcute Normal,Grass,Psychic
+Bullet Seed,Grass,Fast,Exeggcute Purified,Grass,Psychic
+Bullet Seed,Grass,Fast,Exeggcute Shadow,Grass,Psychic
 Bullet Seed,Grass,Fast,Exeggutor,Grass,Psychic
 Bullet Seed,Grass,Fast,Exeggutor Alola,Grass,Dragon
 Bullet Seed,Grass,Fast,Exeggutor Normal,Grass,Psychic
+Bullet Seed,Grass,Fast,Exeggutor Purified,Grass,Psychic
+Bullet Seed,Grass,Fast,Exeggutor Shadow,Grass,Psychic
 Bullet Seed,Grass,Fast,Ferrothorn,Grass,Steel
 Bullet Seed,Grass,Fast,Grovyle,Grass,
 Bullet Seed,Grass,Fast,Hoppip,Grass,Flying
@@ -1051,14 +1103,17 @@ Close Combat,Fighting,Charge,Infernape,Fire,Fighting
 Close Combat,Fighting,Charge,Infernape Normal,Fire,Fighting
 Close Combat,Fighting,Charge,Infernape Purified,Fire,Fighting
 Close Combat,Fighting,Charge,Infernape Shadow,Fire,Fighting
-Close Combat,Fighting,Charge,Keldeo Ordinary,Water,Fighting
+Close Combat,Fighting,Charge,Keldeo,Water,Fighting
 Close Combat,Fighting,Charge,Keldeo Ordinary,Water,Fighting
 Close Combat,Fighting,Charge,Keldeo Resolute,Water,Fighting
 Close Combat,Fighting,Charge,Lucario,Fighting,Steel
 Close Combat,Fighting,Charge,Machamp,Fighting,
-Close Combat,Fighting,Charge,Meloetta Aria,Normal,Psychic
+Close Combat,Fighting,Charge,Meloetta,Normal,Psychic
 Close Combat,Fighting,Charge,Meloetta Pirouette,Normal,Fighting
 Close Combat,Fighting,Charge,Pinsir,Bug,
+Close Combat,Fighting,Charge,Pinsir Normal,Bug,
+Close Combat,Fighting,Charge,Pinsir Purified,Bug,
+Close Combat,Fighting,Charge,Pinsir Shadow,Bug,
 Close Combat,Fighting,Charge,Primeape,Fighting,
 Close Combat,Fighting,Charge,Staraptor,Normal,Flying
 Close Combat,Fighting,Charge,Terrakion,Rock,Fighting
@@ -1086,8 +1141,13 @@ Confusion,Psychic,Fast,Dustox,Bug,Poison
 Confusion,Psychic,Fast,Elgyem,Psychic,
 Confusion,Psychic,Fast,Espeon,Psychic,
 Confusion,Psychic,Fast,Exeggcute,Grass,Psychic
+Confusion,Psychic,Fast,Exeggcute Normal,Grass,Psychic
+Confusion,Psychic,Fast,Exeggcute Purified,Grass,Psychic
+Confusion,Psychic,Fast,Exeggcute Shadow,Grass,Psychic
 Confusion,Psychic,Fast,Exeggutor,Grass,Psychic
 Confusion,Psychic,Fast,Exeggutor Normal,Grass,Psychic
+Confusion,Psychic,Fast,Exeggutor Purified,Grass,Psychic
+Confusion,Psychic,Fast,Exeggutor Shadow,Grass,Psychic
 Confusion,Psychic,Fast,Gallade,Psychic,Fighting
 Confusion,Psychic,Fast,Gallade Normal,Psychic,Fighting
 Confusion,Psychic,Fast,Gallade Purified,Psychic,Fighting
@@ -1222,6 +1282,9 @@ Crunch,Dark,Charge,Bagon Shadow,Dragon,
 Crunch,Dark,Charge,Bidoof,Normal,
 Crunch,Dark,Charge,Carnivine,Grass,
 Crunch,Dark,Charge,Carvanha,Water,Dark
+Crunch,Dark,Charge,Carvanha Normal,Water,Dark
+Crunch,Dark,Charge,Carvanha Purified,Water,Dark
+Crunch,Dark,Charge,Carvanha Shadow,Water,Dark
 Crunch,Dark,Charge,Croconaw,Water,
 Crunch,Dark,Charge,Deino,Dark,Dragon
 Crunch,Dark,Charge,Drapion,Poison,Dark
@@ -1272,6 +1335,9 @@ Crunch,Dark,Charge,Reshiram,Dragon,Fire
 Crunch,Dark,Charge,Sandile,Ground,Dark
 Crunch,Dark,Charge,Seviper,Poison,
 Crunch,Dark,Charge,Sharpedo,Water,Dark
+Crunch,Dark,Charge,Sharpedo Normal,Water,Dark
+Crunch,Dark,Charge,Sharpedo Purified,Water,Dark
+Crunch,Dark,Charge,Sharpedo Shadow,Water,Dark
 Crunch,Dark,Charge,Simipour,Water,
 Crunch,Dark,Charge,Simisage,Grass,
 Crunch,Dark,Charge,Simisear,Fire,
@@ -1347,7 +1413,13 @@ Dark Pulse,Dark,Charge,Meowth Purified,Normal,
 Dark Pulse,Dark,Charge,Meowth Shadow,Normal,
 Dark Pulse,Dark,Charge,Mew,Psychic,
 Dark Pulse,Dark,Charge,Misdreavus,Ghost,
+Dark Pulse,Dark,Charge,Misdreavus Normal,Ghost,
+Dark Pulse,Dark,Charge,Misdreavus Purified,Ghost,
+Dark Pulse,Dark,Charge,Misdreavus Shadow,Ghost,
 Dark Pulse,Dark,Charge,Mismagius,Ghost,
+Dark Pulse,Dark,Charge,Mismagius Normal,Ghost,
+Dark Pulse,Dark,Charge,Mismagius Purified,Ghost,
+Dark Pulse,Dark,Charge,Mismagius Shadow,Ghost,
 Dark Pulse,Dark,Charge,Muk,Poison,
 Dark Pulse,Dark,Charge,Muk Alola,Poison,Dark
 Dark Pulse,Dark,Charge,Muk Normal,Poison,
@@ -1406,6 +1478,9 @@ Dazzling Gleam,Fairy,Charge,Kadabra Shadow,Psychic,
 Dazzling Gleam,Fairy,Charge,Meloetta Aria,Normal,Psychic
 Dazzling Gleam,Fairy,Charge,Mew,Psychic,
 Dazzling Gleam,Fairy,Charge,Mismagius,Ghost,
+Dazzling Gleam,Fairy,Charge,Mismagius Normal,Ghost,
+Dazzling Gleam,Fairy,Charge,Mismagius Purified,Ghost,
+Dazzling Gleam,Fairy,Charge,Mismagius Shadow,Ghost,
 Dazzling Gleam,Fairy,Charge,Munna,Psychic,
 Dazzling Gleam,Fairy,Charge,Musharna,Psychic,
 Dazzling Gleam,Fairy,Charge,Ninetales Alola,Ice,Fairy
@@ -1789,6 +1864,9 @@ Earthquake,Ground,Charge,Marowak Purified,Ground,
 Earthquake,Ground,Charge,Marowak Shadow,Ground,
 Earthquake,Ground,Charge,Meganium,Grass,
 Earthquake,Ground,Charge,Metagross,Steel,Psychic
+Earthquake,Ground,Charge,Metagross Normal,Steel,Psychic
+Earthquake,Ground,Charge,Metagross Purified,Steel,Psychic
+Earthquake,Ground,Charge,Metagross Shadow,Steel,Psychic
 Earthquake,Ground,Charge,Mewtwo A,Psychic,
 Earthquake,Ground,Charge,Nidoking,Poison,Ground
 Earthquake,Ground,Charge,Nidoqueen,Poison,Ground
@@ -1888,6 +1966,8 @@ Ember,Fire,Fast,Torkoal,Fire,
 Ember,Fire,Fast,Typhlosion,Fire,
 Ember,Fire,Fast,Vulpix,Fire,
 Ember,Fire,Fast,Vulpix Normal,Fire,
+Ember,Fire,Fast,Vulpix Purified,Fire,
+Ember,Fire,Fast,Vulpix Shadow,Fire,
 Energy Ball,Grass,Charge,Abomasnow,Grass,Ice
 Energy Ball,Grass,Charge,Abomasnow Normal,Grass,Ice
 Energy Ball,Grass,Charge,Abomasnow Purified,Grass,Ice
@@ -1948,12 +2028,17 @@ Extrasensory,Psychic,Fast,Chimecho,Psychic,
 Extrasensory,Psychic,Fast,Claydol,Ground,Psychic
 Extrasensory,Psychic,Fast,Exeggutor,Grass,Psychic
 Extrasensory,Psychic,Fast,Exeggutor Normal,Grass,Psychic
+Extrasensory,Psychic,Fast,Exeggutor Purified,Grass,Psychic
+Extrasensory,Psychic,Fast,Exeggutor Shadow,Grass,Psychic
 Extrasensory,Psychic,Fast,Grumpig,Psychic,
 Extrasensory,Psychic,Fast,Ho Oh,Fire,Flying
 Extrasensory,Psychic,Fast,Lugia,Psychic,Flying
 Extrasensory,Psychic,Fast,Mesprit,Psychic,
 Extrasensory,Psychic,Fast,Noctowl,Normal,Flying
 Extrasensory,Psychic,Fast,Suicune,Water,
+Extrasensory,Psychic,Fast,Suicune Normal,Water,
+Extrasensory,Psychic,Fast,Suicune Purified,Water,
+Extrasensory,Psychic,Fast,Suicune Shadow,Water,
 Extrasensory,Psychic,Fast,Togetic,Fairy,Flying
 Extrasensory,Psychic,Fast,Uxie,Psychic,
 Feint Attack,Dark,Fast,Amoonguss,Grass,Poison
@@ -1980,6 +2065,8 @@ Feint Attack,Dark,Fast,Murkrow Shadow,Dark,Flying
 Feint Attack,Dark,Fast,Ninetales,Fire,
 Feint Attack,Dark,Fast,Ninetales Alola,Ice,Fairy
 Feint Attack,Dark,Fast,Ninetales Normal,Fire,
+Feint Attack,Dark,Fast,Ninetales Purified,Fire,
+Feint Attack,Dark,Fast,Ninetales Shadow,Fire,
 Feint Attack,Dark,Fast,Nuzleaf,Grass,Dark
 Feint Attack,Dark,Fast,Nuzleaf Normal,Grass,Dark
 Feint Attack,Dark,Fast,Nuzleaf Purified,Grass,Dark
@@ -2040,6 +2127,9 @@ Fire Blast,Fire,Charge,Charizard Normal,Fire,Flying
 Fire Blast,Fire,Charge,Charizard Purified,Fire,Flying
 Fire Blast,Fire,Charge,Charizard Shadow,Fire,Flying
 Fire Blast,Fire,Charge,Entei,Fire,
+Fire Blast,Fire,Charge,Entei Normal,Fire,
+Fire Blast,Fire,Charge,Entei Purified,Fire,
+Fire Blast,Fire,Charge,Entei Shadow,Fire,
 Fire Blast,Fire,Charge,Exploud,Normal,
 Fire Blast,Fire,Charge,Flareon,Fire,
 Fire Blast,Fire,Charge,Garchomp,Dragon,Ground
@@ -2092,6 +2182,9 @@ Fire Fang,Fire,Fast,Darmanitan Standard,Fire,
 Fire Fang,Fire,Fast,Darmanitan Zen,Fire,Psychic
 Fire Fang,Fire,Fast,Darumaka,Fire,
 Fire Fang,Fire,Fast,Entei,Fire,
+Fire Fang,Fire,Fast,Entei Normal,Fire,
+Fire Fang,Fire,Fast,Entei Purified,Fire,
+Fire Fang,Fire,Fast,Entei Shadow,Fire,
 Fire Fang,Fire,Fast,Hippowdon,Ground,
 Fire Fang,Fire,Fast,Hippowdon Normal,Ground,
 Fire Fang,Fire,Fast,Hippowdon Purified,Ground,
@@ -2101,6 +2194,9 @@ Fire Fang,Fire,Fast,Houndoom Normal,Dark,Fire
 Fire Fang,Fire,Fast,Houndoom Purified,Dark,Fire
 Fire Fang,Fire,Fast,Houndoom Shadow,Dark,Fire
 Fire Fang,Fire,Fast,Mawile,Steel,Fairy
+Fire Fang,Fire,Fast,Mawile Normal,Steel,Fairy
+Fire Fang,Fire,Fast,Mawile Purified,Steel,Fairy
+Fire Fang,Fire,Fast,Mawile Shadow,Steel,Fairy
 Fire Fang,Fire,Fast,Mightyena,Dark,
 Fire Fang,Fire,Fast,Reshiram,Dragon,Fire
 Fire Fang,Fire,Fast,Salamence,Dragon,Flying
@@ -2139,7 +2235,7 @@ Fire Punch,Fire,Charge,Magmortar,Fire,
 Fire Punch,Fire,Charge,Magmortar Normal,Fire,
 Fire Punch,Fire,Charge,Magmortar Purified,Fire,
 Fire Punch,Fire,Charge,Magmortar Shadow,Fire,
-Fire Punch,Fire,Charge,Meloetta Aria,Normal,Psychic
+Fire Punch,Fire,Charge,Meloetta,Normal,Psychic
 Fire Punch,Fire,Charge,Meloetta Pirouette,Normal,Fighting
 Fire Spin,Fire,Fast,Blaziken,Fire,Fighting
 Fire Spin,Fire,Fast,Chandelure,Ghost,Fire
@@ -2148,6 +2244,9 @@ Fire Spin,Fire,Fast,Charizard Normal,Fire,Flying
 Fire Spin,Fire,Fast,Charizard Purified,Fire,Flying
 Fire Spin,Fire,Fast,Charizard Shadow,Fire,Flying
 Fire Spin,Fire,Fast,Entei,Fire,
+Fire Spin,Fire,Fast,Entei Normal,Fire,
+Fire Spin,Fire,Fast,Entei Purified,Fire,
+Fire Spin,Fire,Fast,Entei Shadow,Fire,
 Fire Spin,Fire,Fast,Flareon,Fire,
 Fire Spin,Fire,Fast,Heatmor,Fire,
 Fire Spin,Fire,Fast,Heatran,Fire,Steel
@@ -2166,6 +2265,8 @@ Fire Spin,Fire,Fast,Moltres Purified,Fire,Flying
 Fire Spin,Fire,Fast,Moltres Shadow,Fire,Flying
 Fire Spin,Fire,Fast,Ninetales,Fire,
 Fire Spin,Fire,Fast,Ninetales Normal,Fire,
+Fire Spin,Fire,Fast,Ninetales Purified,Fire,
+Fire Spin,Fire,Fast,Ninetales Shadow,Fire,
 Fire Spin,Fire,Fast,Pansear,Fire,
 Fire Spin,Fire,Fast,Rapidash,Fire,
 Fire Spin,Fire,Fast,Simisear,Fire,
@@ -2211,6 +2312,8 @@ Flame Charge,Fire,Charge,Tepig,Fire,
 Flame Charge,Fire,Charge,Torchic,Fire,
 Flame Charge,Fire,Charge,Vulpix,Fire,
 Flame Charge,Fire,Charge,Vulpix Normal,Fire,
+Flame Charge,Fire,Charge,Vulpix Purified,Fire,
+Flame Charge,Fire,Charge,Vulpix Shadow,Fire,
 Flame Charge,Fire,Charge,Zebstrika,Electric,
 Flame Wheel,Fire,Charge,Chimchar,Fire,
 Flame Wheel,Fire,Charge,Chimchar Normal,Fire,
@@ -2252,6 +2355,9 @@ Flamethrower,Fire,Charge,Chimchar Shadow,Fire,
 Flamethrower,Fire,Charge,Combusken,Fire,Fighting
 Flamethrower,Fire,Charge,Cyndaquil,Fire,
 Flamethrower,Fire,Charge,Entei,Fire,
+Flamethrower,Fire,Charge,Entei Normal,Fire,
+Flamethrower,Fire,Charge,Entei Purified,Fire,
+Flamethrower,Fire,Charge,Entei Shadow,Fire,
 Flamethrower,Fire,Charge,Flareon,Fire,
 Flamethrower,Fire,Charge,Gabite,Dragon,Ground
 Flamethrower,Fire,Charge,Gabite Normal,Dragon,Ground
@@ -2303,6 +2409,8 @@ Flamethrower,Fire,Charge,Togekiss,Fairy,Flying
 Flamethrower,Fire,Charge,Torchic,Fire,
 Flamethrower,Fire,Charge,Vulpix,Fire,
 Flamethrower,Fire,Charge,Vulpix Normal,Fire,
+Flamethrower,Fire,Charge,Vulpix Purified,Fire,
+Flamethrower,Fire,Charge,Vulpix Shadow,Fire,
 Flamethrower,Fire,Charge,Whismur,Normal,
 Flamethrower,Fire,Charge,Zoroark,Dark,
 Flash Cannon,Steel,Charge,Bastiodon,Rock,Steel
@@ -2329,6 +2437,9 @@ Flash Cannon,Steel,Charge,Magnezone Shadow,Electric,Steel
 Flash Cannon,Steel,Charge,Melmetal,Steel,
 Flash Cannon,Steel,Charge,Meltan,Steel,
 Flash Cannon,Steel,Charge,Metagross,Steel,Psychic
+Flash Cannon,Steel,Charge,Metagross Normal,Steel,Psychic
+Flash Cannon,Steel,Charge,Metagross Purified,Steel,Psychic
+Flash Cannon,Steel,Charge,Metagross Shadow,Steel,Psychic
 Flash Cannon,Steel,Charge,Mew,Psychic,
 Flash Cannon,Steel,Charge,Registeel,Steel,
 Flash Cannon,Steel,Charge,Skarmory,Steel,Flying
@@ -2470,6 +2581,9 @@ Fury Cutter,Bug,Fast,Ninjask,Bug,Flying
 Fury Cutter,Bug,Fast,Parasect,Bug,Grass
 Fury Cutter,Bug,Fast,Pawniard,Dark,Steel
 Fury Cutter,Bug,Fast,Pinsir,Bug,
+Fury Cutter,Bug,Fast,Pinsir Normal,Bug,
+Fury Cutter,Bug,Fast,Pinsir Purified,Bug,
+Fury Cutter,Bug,Fast,Pinsir Shadow,Bug,
 Fury Cutter,Bug,Fast,Samurott,Water,
 Fury Cutter,Bug,Fast,Sceptile,Grass,
 Fury Cutter,Bug,Fast,Scizor,Bug,Steel
@@ -2609,6 +2723,9 @@ Gyro Ball,Steel,Charge,Glalie,Ice,
 Gyro Ball,Steel,Charge,Hitmontop,Fighting,
 Gyro Ball,Steel,Charge,Jigglypuff,Normal,Fairy
 Gyro Ball,Steel,Charge,Metang,Steel,Psychic
+Gyro Ball,Steel,Charge,Metang Normal,Steel,Psychic
+Gyro Ball,Steel,Charge,Metang Purified,Steel,Psychic
+Gyro Ball,Steel,Charge,Metang Shadow,Steel,Psychic
 Gyro Ball,Steel,Charge,Mew,Psychic,
 Gyro Ball,Steel,Charge,Miltank,Normal,
 Gyro Ball,Steel,Charge,Pineco,Bug,
@@ -2631,6 +2748,8 @@ Heat Wave,Fire,Charge,Moltres Purified,Fire,Flying
 Heat Wave,Fire,Charge,Moltres Shadow,Fire,Flying
 Heat Wave,Fire,Charge,Ninetales,Fire,
 Heat Wave,Fire,Charge,Ninetales Normal,Fire,
+Heat Wave,Fire,Charge,Ninetales Purified,Fire,
+Heat Wave,Fire,Charge,Ninetales Shadow,Fire,
 Heat Wave,Fire,Charge,Numel,Fire,Ground
 Heat Wave,Fire,Charge,Pidove,Normal,Flying
 Heat Wave,Fire,Charge,Rapidash,Fire,
@@ -2684,12 +2803,22 @@ Hex,Ghost,Fast,Duskull Normal,Ghost,
 Hex,Ghost,Fast,Duskull Purified,Ghost,
 Hex,Ghost,Fast,Duskull Shadow,Ghost,
 Hex,Ghost,Fast,Frillish,Water,Ghost
+Hex,Ghost,Fast,Frillish Female,Water,Ghost
+Hex,Ghost,Fast,Frillish Normal,Water,Ghost
 Hex,Ghost,Fast,Froslass,Ice,Ghost
 Hex,Ghost,Fast,Gengar,Ghost,Poison
 Hex,Ghost,Fast,Jellicent,Water,Ghost
+Hex,Ghost,Fast,Jellicent Female,Water,Ghost
+Hex,Ghost,Fast,Jellicent Normal,Water,Ghost
 Hex,Ghost,Fast,Marowak Alola,Fire,Ghost
 Hex,Ghost,Fast,Misdreavus,Ghost,
+Hex,Ghost,Fast,Misdreavus Normal,Ghost,
+Hex,Ghost,Fast,Misdreavus Purified,Ghost,
+Hex,Ghost,Fast,Misdreavus Shadow,Ghost,
 Hex,Ghost,Fast,Mismagius,Ghost,
+Hex,Ghost,Fast,Mismagius Normal,Ghost,
+Hex,Ghost,Fast,Mismagius Purified,Ghost,
+Hex,Ghost,Fast,Mismagius Shadow,Ghost,
 Hex,Ghost,Fast,Snorunt,Ice,
 Hidden Power,Normal,Fast,Alomomola,Water,
 Hidden Power,Normal,Fast,Budew,Grass,Poison
@@ -2775,7 +2904,7 @@ Hydro Pump,Water,Charge,Gyarados,Water,Flying
 Hydro Pump,Water,Charge,Gyarados Normal,Water,Flying
 Hydro Pump,Water,Charge,Gyarados Purified,Water,Flying
 Hydro Pump,Water,Charge,Gyarados Shadow,Water,Flying
-Hydro Pump,Water,Charge,Keldeo Ordinary,Water,Fighting
+Hydro Pump,Water,Charge,Keldeo,Water,Fighting
 Hydro Pump,Water,Charge,Keldeo Ordinary,Water,Fighting
 Hydro Pump,Water,Charge,Keldeo Resolute,Water,Fighting
 Hydro Pump,Water,Charge,Kingdra,Water,Dragon
@@ -2788,6 +2917,9 @@ Hydro Pump,Water,Charge,Lapras Shadow,Water,Ice
 Hydro Pump,Water,Charge,Ludicolo,Water,Grass
 Hydro Pump,Water,Charge,Lugia,Psychic,Flying
 Hydro Pump,Water,Charge,Omastar,Rock,Water
+Hydro Pump,Water,Charge,Omastar Normal,Rock,Water
+Hydro Pump,Water,Charge,Omastar Purified,Rock,Water
+Hydro Pump,Water,Charge,Omastar Shadow,Rock,Water
 Hydro Pump,Water,Charge,Palkia,Water,Dragon
 Hydro Pump,Water,Charge,Pelipper,Water,Flying
 Hydro Pump,Water,Charge,Politoed,Water,
@@ -2808,9 +2940,15 @@ Hydro Pump,Water,Charge,Salamence Shadow,Dragon,Flying
 Hydro Pump,Water,Charge,Samurott,Water,
 Hydro Pump,Water,Charge,Seadra,Water,
 Hydro Pump,Water,Charge,Sharpedo,Water,Dark
+Hydro Pump,Water,Charge,Sharpedo Normal,Water,Dark
+Hydro Pump,Water,Charge,Sharpedo Purified,Water,Dark
+Hydro Pump,Water,Charge,Sharpedo Shadow,Water,Dark
 Hydro Pump,Water,Charge,Simipour,Water,
 Hydro Pump,Water,Charge,Starmie,Water,Psychic
 Hydro Pump,Water,Charge,Suicune,Water,
+Hydro Pump,Water,Charge,Suicune Normal,Water,
+Hydro Pump,Water,Charge,Suicune Purified,Water,
+Hydro Pump,Water,Charge,Suicune Shadow,Water,
 Hydro Pump,Water,Charge,Tentacruel,Water,Poison
 Hydro Pump,Water,Charge,Vaporeon,Water,
 Hydro Pump,Water,Charge,Wartortle,Water,
@@ -2865,7 +3003,7 @@ Hyper Beam,Normal,Charge,Lilligant,Grass,
 Hyper Beam,Normal,Charge,Lopunny,Normal,
 Hyper Beam,Normal,Charge,Luxray,Electric,
 Hyper Beam,Normal,Charge,Melmetal,Steel,
-Hyper Beam,Normal,Charge,Meloetta Aria,Normal,Psychic
+Hyper Beam,Normal,Charge,Meloetta,Normal,Psychic
 Hyper Beam,Normal,Charge,Meloetta Aria,Normal,Psychic
 Hyper Beam,Normal,Charge,Meloetta Pirouette,Normal,Fighting
 Hyper Beam,Normal,Charge,Mew,Psychic,
@@ -2938,6 +3076,8 @@ Ice Beam,Ice,Charge,Clamperl,Water,
 Ice Beam,Ice,Charge,Feraligatr,Water,
 Ice Beam,Ice,Charge,Finneon,Water,
 Ice Beam,Ice,Charge,Frillish,Water,Ghost
+Ice Beam,Ice,Charge,Frillish Female,Water,Ghost
+Ice Beam,Ice,Charge,Frillish Normal,Water,Ghost
 Ice Beam,Ice,Charge,Genesect Chill,Bug,Steel
 Ice Beam,Ice,Charge,Glaceon,Ice,
 Ice Beam,Ice,Charge,Golduck,Water,
@@ -2947,6 +3087,8 @@ Ice Beam,Ice,Charge,Golduck Shadow,Water,
 Ice Beam,Ice,Charge,Gulpin,Poison,
 Ice Beam,Ice,Charge,Huntail,Water,
 Ice Beam,Ice,Charge,Jellicent,Water,Ghost
+Ice Beam,Ice,Charge,Jellicent Female,Water,Ghost
+Ice Beam,Ice,Charge,Jellicent Normal,Water,Ghost
 Ice Beam,Ice,Charge,Kecleon,Normal,
 Ice Beam,Ice,Charge,Lombre,Water,Grass
 Ice Beam,Ice,Charge,Ludicolo,Water,Grass
@@ -2968,6 +3110,9 @@ Ice Beam,Ice,Charge,Snover Purified,Grass,Ice
 Ice Beam,Ice,Charge,Snover Shadow,Grass,Ice
 Ice Beam,Ice,Charge,Starmie,Water,Psychic
 Ice Beam,Ice,Charge,Suicune,Water,
+Ice Beam,Ice,Charge,Suicune Normal,Water,
+Ice Beam,Ice,Charge,Suicune Purified,Water,
+Ice Beam,Ice,Charge,Suicune Shadow,Water,
 Ice Beam,Ice,Charge,Swablu,Normal,Flying
 Ice Beam,Ice,Charge,Swalot,Poison,
 Ice Beam,Ice,Charge,Swanna,Water,Flying
@@ -2987,9 +3132,15 @@ Ice Fang,Ice,Fast,Hippowdon Normal,Ground,
 Ice Fang,Ice,Fast,Hippowdon Purified,Ground,
 Ice Fang,Ice,Fast,Hippowdon Shadow,Ground,
 Ice Fang,Ice,Fast,Mawile,Steel,Fairy
+Ice Fang,Ice,Fast,Mawile Normal,Steel,Fairy
+Ice Fang,Ice,Fast,Mawile Purified,Steel,Fairy
+Ice Fang,Ice,Fast,Mawile Shadow,Steel,Fairy
 Ice Fang,Ice,Fast,Mightyena,Dark,
 Ice Fang,Ice,Fast,Stoutland,Normal,
 Ice Fang,Ice,Fast,Suicune,Water,
+Ice Fang,Ice,Fast,Suicune Normal,Water,
+Ice Fang,Ice,Fast,Suicune Purified,Water,
+Ice Fang,Ice,Fast,Suicune Shadow,Water,
 Ice Punch,Ice,Charge,Beartic,Ice,
 Ice Punch,Ice,Charge,Croconaw,Water,
 Ice Punch,Ice,Charge,Cubchoo,Ice,
@@ -3015,7 +3166,7 @@ Ice Punch,Ice,Charge,Hypno Purified,Psychic,
 Ice Punch,Ice,Charge,Hypno Shadow,Psychic,
 Ice Punch,Ice,Charge,Medicham,Fighting,Psychic
 Ice Punch,Ice,Charge,Meditite,Fighting,Psychic
-Ice Punch,Ice,Charge,Meloetta Aria,Normal,Psychic
+Ice Punch,Ice,Charge,Meloetta,Normal,Psychic
 Ice Punch,Ice,Charge,Meloetta Pirouette,Normal,Fighting
 Ice Punch,Ice,Charge,Poliwrath,Water,Fighting
 Ice Punch,Ice,Charge,Poliwrath Normal,Water,Fighting
@@ -3129,11 +3280,17 @@ Iron Head,Steel,Charge,Dialga,Steel,Dragon
 Iron Head,Steel,Charge,Dugtrio Alola,Ground,Steel
 Iron Head,Steel,Charge,Durant,Bug,Steel
 Iron Head,Steel,Charge,Entei,Fire,
+Iron Head,Steel,Charge,Entei Normal,Fire,
+Iron Head,Steel,Charge,Entei Purified,Fire,
+Iron Head,Steel,Charge,Entei Shadow,Fire,
 Iron Head,Steel,Charge,Excadrill,Ground,Steel
 Iron Head,Steel,Charge,Ferroseed,Grass,Steel
 Iron Head,Steel,Charge,Heatran,Fire,Steel
 Iron Head,Steel,Charge,Kyurem Black,Dragon,Ice
 Iron Head,Steel,Charge,Mawile,Steel,Fairy
+Iron Head,Steel,Charge,Mawile Normal,Steel,Fairy
+Iron Head,Steel,Charge,Mawile Purified,Steel,Fairy
+Iron Head,Steel,Charge,Mawile Shadow,Steel,Fairy
 Iron Head,Steel,Charge,Pawniard,Dark,Steel
 Iron Head,Steel,Charge,Scizor,Bug,Steel
 Iron Head,Steel,Charge,Scizor Normal,Bug,Steel
@@ -3285,12 +3442,12 @@ Low Kick,Fighting,Fast,Kangaskhan,Normal,
 Low Kick,Fighting,Fast,Kangaskhan Normal,Normal,
 Low Kick,Fighting,Fast,Kangaskhan Purified,Normal,
 Low Kick,Fighting,Fast,Kangaskhan Shadow,Normal,
-Low Kick,Fighting,Fast,Keldeo Ordinary,Water,Fighting
+Low Kick,Fighting,Fast,Keldeo,Water,Fighting
 Low Kick,Fighting,Fast,Keldeo Ordinary,Water,Fighting
 Low Kick,Fighting,Fast,Keldeo Resolute,Water,Fighting
 Low Kick,Fighting,Fast,Lopunny,Normal,
 Low Kick,Fighting,Fast,Machoke,Fighting,
-Low Kick,Fighting,Fast,Meloetta Aria,Normal,Psychic
+Low Kick,Fighting,Fast,Meloetta,Normal,Psychic
 Low Kick,Fighting,Fast,Meloetta Pirouette,Normal,Fighting
 Low Kick,Fighting,Fast,Mienfoo,Fighting,
 Low Kick,Fighting,Fast,Mienshao,Fighting,
@@ -3384,6 +3541,9 @@ Metal Claw,Steel,Fast,Kingler Purified,Water,
 Metal Claw,Steel,Fast,Kingler Shadow,Water,
 Metal Claw,Steel,Fast,Lairon,Steel,Rock
 Metal Claw,Steel,Fast,Metang,Steel,Psychic
+Metal Claw,Steel,Fast,Metang Normal,Steel,Psychic
+Metal Claw,Steel,Fast,Metang Purified,Steel,Psychic
+Metal Claw,Steel,Fast,Metang Shadow,Steel,Psychic
 Metal Claw,Steel,Fast,Ninjask,Bug,Flying
 Metal Claw,Steel,Fast,Prinplup,Water,
 Metal Claw,Steel,Fast,Registeel,Steel,
@@ -3499,7 +3659,13 @@ Mud Shot,Ground,Fast,Marshtomp Purified,Water,Ground
 Mud Shot,Ground,Fast,Marshtomp Shadow,Water,Ground
 Mud Shot,Ground,Fast,Octillery,Water,
 Mud Shot,Ground,Fast,Omanyte,Rock,Water
+Mud Shot,Ground,Fast,Omanyte Normal,Rock,Water
+Mud Shot,Ground,Fast,Omanyte Purified,Rock,Water
+Mud Shot,Ground,Fast,Omanyte Shadow,Rock,Water
 Mud Shot,Ground,Fast,Omastar,Rock,Water
+Mud Shot,Ground,Fast,Omastar Normal,Rock,Water
+Mud Shot,Ground,Fast,Omastar Purified,Rock,Water
+Mud Shot,Ground,Fast,Omastar Shadow,Rock,Water
 Mud Shot,Ground,Fast,Palpitoad,Water,Ground
 Mud Shot,Ground,Fast,Politoed,Water,
 Mud Shot,Ground,Fast,Politoed Normal,Water,
@@ -3624,6 +3790,8 @@ Night Shade,Ghost,Charge,Duskull Normal,Ghost,
 Night Shade,Ghost,Charge,Duskull Purified,Ghost,
 Night Shade,Ghost,Charge,Duskull Shadow,Ghost,
 Night Shade,Ghost,Charge,Frillish,Water,Ghost
+Night Shade,Ghost,Charge,Frillish Female,Water,Ghost
+Night Shade,Ghost,Charge,Frillish Normal,Water,Ghost
 Night Shade,Ghost,Charge,Gastly,Ghost,Poison
 Night Shade,Ghost,Charge,Golett,Ground,Ghost
 Night Shade,Ghost,Charge,Hoothoot,Normal,Flying
@@ -3676,9 +3844,14 @@ Ominous Wind,Ghost,Charge,Duskull Normal,Ghost,
 Ominous Wind,Ghost,Charge,Duskull Purified,Ghost,
 Ominous Wind,Ghost,Charge,Duskull Shadow,Ghost,
 Ominous Wind,Ghost,Charge,Frillish,Water,Ghost
+Ominous Wind,Ghost,Charge,Frillish Female,Water,Ghost
+Ominous Wind,Ghost,Charge,Frillish Normal,Water,Ghost
 Ominous Wind,Ghost,Charge,Giratina Origin,Ghost,Dragon
 Ominous Wind,Ghost,Charge,Masquerain,Bug,Flying
 Ominous Wind,Ghost,Charge,Misdreavus,Ghost,
+Ominous Wind,Ghost,Charge,Misdreavus Normal,Ghost,
+Ominous Wind,Ghost,Charge,Misdreavus Purified,Ghost,
+Ominous Wind,Ghost,Charge,Misdreavus Shadow,Ghost,
 Ominous Wind,Ghost,Charge,Rotom,Electric,Ghost
 Ominous Wind,Ghost,Charge,Rotom Fan,Electric,Flying
 Ominous Wind,Ghost,Charge,Rotom Mow,Electric,Grass
@@ -3754,6 +3927,9 @@ Overheat,Fire,Charge,Darmanitan,Fire,
 Overheat,Fire,Charge,Darmanitan Standard,Fire,
 Overheat,Fire,Charge,Darmanitan Zen,Fire,Psychic
 Overheat,Fire,Charge,Entei,Fire,
+Overheat,Fire,Charge,Entei Normal,Fire,
+Overheat,Fire,Charge,Entei Purified,Fire,
+Overheat,Fire,Charge,Entei Shadow,Fire,
 Overheat,Fire,Charge,Flareon,Fire,
 Overheat,Fire,Charge,Magcargo,Fire,Rock
 Overheat,Fire,Charge,Mew,Psychic,
@@ -3763,6 +3939,8 @@ Overheat,Fire,Charge,Moltres Purified,Fire,Flying
 Overheat,Fire,Charge,Moltres Shadow,Fire,Flying
 Overheat,Fire,Charge,Ninetales,Fire,
 Overheat,Fire,Charge,Ninetales Normal,Fire,
+Overheat,Fire,Charge,Ninetales Purified,Fire,
+Overheat,Fire,Charge,Ninetales Shadow,Fire,
 Overheat,Fire,Charge,Reshiram,Dragon,Fire
 Overheat,Fire,Charge,Rotom Heat,Electric,Fire
 Overheat,Fire,Charge,Torkoal,Fire,
@@ -3826,6 +4004,9 @@ Play Rough,Fairy,Charge,Granbull,Fairy,
 Play Rough,Fairy,Charge,Herdier,Normal,
 Play Rough,Fairy,Charge,Liepard,Dark,
 Play Rough,Fairy,Charge,Mawile,Steel,Fairy
+Play Rough,Fairy,Charge,Mawile Normal,Steel,Fairy
+Play Rough,Fairy,Charge,Mawile Purified,Steel,Fairy
+Play Rough,Fairy,Charge,Mawile Shadow,Steel,Fairy
 Play Rough,Fairy,Charge,Mightyena,Dark,
 Play Rough,Fairy,Charge,Persian,Normal,
 Play Rough,Fairy,Charge,Persian Alola,Dark,
@@ -3841,6 +4022,9 @@ Play Rough,Fairy,Charge,Ursaring,Normal,
 Play Rough,Fairy,Charge,Weezing Galarian,Poison,Fairy
 Play Rough,Fairy,Charge,Wigglytuff,Normal,Fairy
 Poison Fang,Poison,Charge,Carvanha,Water,Dark
+Poison Fang,Poison,Charge,Carvanha Normal,Water,Dark
+Poison Fang,Poison,Charge,Carvanha Purified,Water,Dark
+Poison Fang,Poison,Charge,Carvanha Shadow,Water,Dark
 Poison Fang,Poison,Charge,Ekans,Poison,
 Poison Fang,Poison,Charge,Ekans Normal,Poison,
 Poison Fang,Poison,Charge,Ekans Purified,Poison,
@@ -3855,6 +4039,9 @@ Poison Fang,Poison,Charge,Nidorina,Poison,
 Poison Fang,Poison,Charge,Poochyena,Dark,
 Poison Fang,Poison,Charge,Seviper,Poison,
 Poison Fang,Poison,Charge,Sharpedo,Water,Dark
+Poison Fang,Poison,Charge,Sharpedo Normal,Water,Dark
+Poison Fang,Poison,Charge,Sharpedo Purified,Water,Dark
+Poison Fang,Poison,Charge,Sharpedo Shadow,Water,Dark
 Poison Fang,Poison,Charge,Venomoth,Bug,Poison
 Poison Fang,Poison,Charge,Venomoth Normal,Bug,Poison
 Poison Fang,Poison,Charge,Venomoth Purified,Bug,Poison
@@ -3884,7 +4071,7 @@ Poison Jab,Poison,Fast,Grimer Normal,Poison,
 Poison Jab,Poison,Fast,Grimer Purified,Poison,
 Poison Jab,Poison,Fast,Grimer Shadow,Poison,
 Poison Jab,Poison,Fast,Gurdurr,Fighting,
-Poison Jab,Poison,Fast,Keldeo Ordinary,Water,Fighting
+Poison Jab,Poison,Fast,Keldeo,Water,Fighting
 Poison Jab,Poison,Fast,Keldeo Ordinary,Water,Fighting
 Poison Jab,Poison,Fast,Keldeo Resolute,Water,Fighting
 Poison Jab,Poison,Fast,Maractus,Grass,
@@ -4022,6 +4209,9 @@ Power Up Punch,Fighting,Charge,Kangaskhan Purified,Normal,
 Power Up Punch,Fighting,Charge,Kangaskhan Shadow,Normal,
 Power Up Punch,Fighting,Charge,Lucario,Fighting,Steel
 Power Up Punch,Fighting,Charge,Mawile,Steel,Fairy
+Power Up Punch,Fighting,Charge,Mawile Normal,Steel,Fairy
+Power Up Punch,Fighting,Charge,Mawile Purified,Steel,Fairy
+Power Up Punch,Fighting,Charge,Mawile Shadow,Steel,Fairy
 Power Up Punch,Fighting,Charge,Medicham,Fighting,Psychic
 Power Up Punch,Fighting,Charge,Poliwrath,Water,Fighting
 Power Up Punch,Fighting,Charge,Poliwrath Normal,Water,Fighting
@@ -4107,8 +4297,13 @@ Psychic,Psychic,Charge,Dusknoir Shadow,Ghost,
 Psychic,Psychic,Charge,Elgyem,Psychic,
 Psychic,Psychic,Charge,Espeon,Psychic,
 Psychic,Psychic,Charge,Exeggcute,Grass,Psychic
+Psychic,Psychic,Charge,Exeggcute Normal,Grass,Psychic
+Psychic,Psychic,Charge,Exeggcute Purified,Grass,Psychic
+Psychic,Psychic,Charge,Exeggcute Shadow,Grass,Psychic
 Psychic,Psychic,Charge,Exeggutor,Grass,Psychic
 Psychic,Psychic,Charge,Exeggutor Normal,Grass,Psychic
+Psychic,Psychic,Charge,Exeggutor Purified,Grass,Psychic
+Psychic,Psychic,Charge,Exeggutor Shadow,Grass,Psychic
 Psychic,Psychic,Charge,Gallade,Psychic,Fighting
 Psychic,Psychic,Charge,Gallade Normal,Psychic,Fighting
 Psychic,Psychic,Charge,Gallade Purified,Psychic,Fighting
@@ -4152,7 +4347,13 @@ Psychic,Psychic,Charge,Magmortar Shadow,Fire,
 Psychic,Psychic,Charge,Manaphy,Water,
 Psychic,Psychic,Charge,Medicham,Fighting,Psychic
 Psychic,Psychic,Charge,Metagross,Steel,Psychic
+Psychic,Psychic,Charge,Metagross Normal,Steel,Psychic
+Psychic,Psychic,Charge,Metagross Purified,Steel,Psychic
+Psychic,Psychic,Charge,Metagross Shadow,Steel,Psychic
 Psychic,Psychic,Charge,Metang,Steel,Psychic
+Psychic,Psychic,Charge,Metang Normal,Steel,Psychic
+Psychic,Psychic,Charge,Metang Purified,Steel,Psychic
+Psychic,Psychic,Charge,Metang Shadow,Steel,Psychic
 Psychic,Psychic,Charge,Mew,Psychic,
 Psychic,Psychic,Charge,Mew,Psychic,
 Psychic,Psychic,Charge,Mewtwo,Psychic,
@@ -4214,6 +4415,9 @@ Psyshock,Psychic,Charge,Jynx,Ice,Psychic
 Psyshock,Psychic,Charge,Meditite,Fighting,Psychic
 Psyshock,Psychic,Charge,Meloetta Aria,Normal,Psychic
 Psyshock,Psychic,Charge,Metang,Steel,Psychic
+Psyshock,Psychic,Charge,Metang Normal,Steel,Psychic
+Psyshock,Psychic,Charge,Metang Purified,Steel,Psychic
+Psyshock,Psychic,Charge,Metang Shadow,Steel,Psychic
 Psyshock,Psychic,Charge,Mew,Psychic,
 Psyshock,Psychic,Charge,Mew,Psychic,
 Psyshock,Psychic,Charge,Mime Jr,Psychic,Fairy
@@ -4223,6 +4427,8 @@ Psyshock,Psychic,Charge,Natu,Psychic,Flying
 Psyshock,Psychic,Charge,Ninetales,Fire,
 Psyshock,Psychic,Charge,Ninetales Alola,Ice,Fairy
 Psyshock,Psychic,Charge,Ninetales Normal,Fire,
+Psyshock,Psychic,Charge,Ninetales Purified,Fire,
+Psyshock,Psychic,Charge,Ninetales Shadow,Fire,
 Psyshock,Psychic,Charge,Ralts,Psychic,Fairy
 Psyshock,Psychic,Charge,Ralts Normal,Psychic,Fairy
 Psyshock,Psychic,Charge,Ralts Purified,Psychic,Fairy
@@ -4244,7 +4450,7 @@ Quick Attack,Normal,Fast,Furret,Normal,
 Quick Attack,Normal,Fast,Glameow,Normal,
 Quick Attack,Normal,Fast,Grovyle,Grass,
 Quick Attack,Normal,Fast,Leafeon,Grass,
-Quick Attack,Normal,Fast,Meloetta Aria,Normal,Psychic
+Quick Attack,Normal,Fast,Meloetta,Normal,Psychic
 Quick Attack,Normal,Fast,Meloetta Aria,Normal,Psychic
 Quick Attack,Normal,Fast,Meloetta Pirouette,Normal,Fighting
 Quick Attack,Normal,Fast,Minun,Electric,
@@ -4280,6 +4486,8 @@ Quick Attack,Normal,Fast,Victini,Psychic,Fire
 Quick Attack,Normal,Fast,Virizion,Grass,Fighting
 Quick Attack,Normal,Fast,Vulpix,Fire,
 Quick Attack,Normal,Fast,Vulpix Normal,Fire,
+Quick Attack,Normal,Fast,Vulpix Purified,Fire,
+Quick Attack,Normal,Fast,Vulpix Shadow,Fire,
 Quick Attack,Normal,Fast,Wingull,Water,Flying
 Quick Attack,Normal,Fast,Yanma,Bug,Flying
 Quick Attack,Normal,Fast,Zubat,Poison,Flying
@@ -4372,7 +4580,13 @@ Rock Blast,Rock,Charge,Graveler Purified,Rock,Ground
 Rock Blast,Rock,Charge,Graveler Shadow,Rock,Ground
 Rock Blast,Rock,Charge,Nosepass,Rock,
 Rock Blast,Rock,Charge,Omanyte,Rock,Water
+Rock Blast,Rock,Charge,Omanyte Normal,Rock,Water
+Rock Blast,Rock,Charge,Omanyte Purified,Rock,Water
+Rock Blast,Rock,Charge,Omanyte Shadow,Rock,Water
 Rock Blast,Rock,Charge,Omastar,Rock,Water
+Rock Blast,Rock,Charge,Omastar Normal,Rock,Water
+Rock Blast,Rock,Charge,Omastar Purified,Rock,Water
+Rock Blast,Rock,Charge,Omastar Shadow,Rock,Water
 Rock Blast,Rock,Charge,Remoraid,Water,
 Rock Blast,Rock,Charge,Roggenrola,Rock,
 Rock Blast,Rock,Charge,Shuckle,Bug,Rock
@@ -4458,6 +4672,9 @@ Rock Smash,Fighting,Fast,Monferno Purified,Fire,Fighting
 Rock Smash,Fighting,Fast,Monferno Shadow,Fire,Fighting
 Rock Smash,Fighting,Fast,Phanpy,Ground,
 Rock Smash,Fighting,Fast,Pinsir,Bug,
+Rock Smash,Fighting,Fast,Pinsir Normal,Bug,
+Rock Smash,Fighting,Fast,Pinsir Purified,Bug,
+Rock Smash,Fighting,Fast,Pinsir Shadow,Bug,
 Rock Smash,Fighting,Fast,Poliwrath,Water,Fighting
 Rock Smash,Fighting,Fast,Poliwrath Normal,Water,Fighting
 Rock Smash,Fighting,Fast,Poliwrath Purified,Water,Fighting
@@ -4648,9 +4865,14 @@ Seed Bomb,Grass,Charge,Deerling Spring,Normal,Grass
 Seed Bomb,Grass,Charge,Deerling Summer,Normal,Grass
 Seed Bomb,Grass,Charge,Deerling Winter,Normal,Grass
 Seed Bomb,Grass,Charge,Exeggcute,Grass,Psychic
+Seed Bomb,Grass,Charge,Exeggcute Normal,Grass,Psychic
+Seed Bomb,Grass,Charge,Exeggcute Purified,Grass,Psychic
+Seed Bomb,Grass,Charge,Exeggcute Shadow,Grass,Psychic
 Seed Bomb,Grass,Charge,Exeggutor,Grass,Psychic
 Seed Bomb,Grass,Charge,Exeggutor Alola,Grass,Dragon
 Seed Bomb,Grass,Charge,Exeggutor Normal,Grass,Psychic
+Seed Bomb,Grass,Charge,Exeggutor Purified,Grass,Psychic
+Seed Bomb,Grass,Charge,Exeggutor Shadow,Grass,Psychic
 Seed Bomb,Grass,Charge,Garbodor,Poison,
 Seed Bomb,Grass,Charge,Hoppip,Grass,Flying
 Seed Bomb,Grass,Charge,Oddish,Grass,Poison
@@ -4716,6 +4938,8 @@ Shadow Ball,Ghost,Charge,Hypno Purified,Psychic,
 Shadow Ball,Ghost,Charge,Hypno Shadow,Psychic,
 Shadow Ball,Ghost,Charge,Igglybuff,Normal,Fairy
 Shadow Ball,Ghost,Charge,Jellicent,Water,Ghost
+Shadow Ball,Ghost,Charge,Jellicent Female,Water,Ghost
+Shadow Ball,Ghost,Charge,Jellicent Normal,Water,Ghost
 Shadow Ball,Ghost,Charge,Kadabra,Psychic,
 Shadow Ball,Ghost,Charge,Kadabra Normal,Psychic,
 Shadow Ball,Ghost,Charge,Kadabra Purified,Psychic,
@@ -4725,6 +4949,9 @@ Shadow Ball,Ghost,Charge,Lucario,Fighting,Steel
 Shadow Ball,Ghost,Charge,Mandibuzz,Dark,Flying
 Shadow Ball,Ghost,Charge,Marowak Alola,Fire,Ghost
 Shadow Ball,Ghost,Charge,Mismagius,Ghost,
+Shadow Ball,Ghost,Charge,Mismagius Normal,Ghost,
+Shadow Ball,Ghost,Charge,Mismagius Purified,Ghost,
+Shadow Ball,Ghost,Charge,Mismagius Shadow,Ghost,
 Shadow Ball,Ghost,Charge,Mr Mime,Psychic,Fairy
 Shadow Ball,Ghost,Charge,Ninjask,Bug,Flying
 Shadow Ball,Ghost,Charge,Raikou,Electric,
@@ -4804,6 +5031,9 @@ Shadow Sneak,Ghost,Charge,Kirlia Normal,Psychic,Fairy
 Shadow Sneak,Ghost,Charge,Kirlia Purified,Psychic,Fairy
 Shadow Sneak,Ghost,Charge,Kirlia Shadow,Psychic,Fairy
 Shadow Sneak,Ghost,Charge,Misdreavus,Ghost,
+Shadow Sneak,Ghost,Charge,Misdreavus Normal,Ghost,
+Shadow Sneak,Ghost,Charge,Misdreavus Purified,Ghost,
+Shadow Sneak,Ghost,Charge,Misdreavus Shadow,Ghost,
 Shadow Sneak,Ghost,Charge,Ralts,Psychic,Fairy
 Shadow Sneak,Ghost,Charge,Ralts Normal,Psychic,Fairy
 Shadow Sneak,Ghost,Charge,Ralts Purified,Psychic,Fairy
@@ -5040,6 +5270,9 @@ Snarl,Dark,Fast,Arcanine Purified,Fire,
 Snarl,Dark,Fast,Arcanine Shadow,Fire,
 Snarl,Dark,Fast,Bisharp,Dark,Steel
 Snarl,Dark,Fast,Carvanha,Water,Dark
+Snarl,Dark,Fast,Carvanha Normal,Water,Dark
+Snarl,Dark,Fast,Carvanha Purified,Water,Dark
+Snarl,Dark,Fast,Carvanha Shadow,Water,Dark
 Snarl,Dark,Fast,Crawdaunt,Water,Dark
 Snarl,Dark,Fast,Darkrai,Dark,
 Snarl,Dark,Fast,Granbull,Fairy,
@@ -5065,6 +5298,9 @@ Snarl,Dark,Fast,Shiftry Normal,Grass,Dark
 Snarl,Dark,Fast,Shiftry Purified,Grass,Dark
 Snarl,Dark,Fast,Shiftry Shadow,Grass,Dark
 Snarl,Dark,Fast,Suicune,Water,
+Snarl,Dark,Fast,Suicune Normal,Water,
+Snarl,Dark,Fast,Suicune Purified,Water,
+Snarl,Dark,Fast,Suicune Shadow,Water,
 Snarl,Dark,Fast,Umbreon,Dark,
 Snarl,Dark,Fast,Weavile,Dark,Ice
 Snarl,Dark,Fast,Weavile Normal,Dark,Ice
@@ -5080,6 +5316,8 @@ Solar Beam,Grass,Charge,Cryogonal,Ice,
 Solar Beam,Grass,Charge,Exeggutor,Grass,Psychic
 Solar Beam,Grass,Charge,Exeggutor Alola,Grass,Dragon
 Solar Beam,Grass,Charge,Exeggutor Normal,Grass,Psychic
+Solar Beam,Grass,Charge,Exeggutor Purified,Grass,Psychic
+Solar Beam,Grass,Charge,Exeggutor Shadow,Grass,Psychic
 Solar Beam,Grass,Charge,Gigalith,Rock,
 Solar Beam,Grass,Charge,Grotle,Grass,
 Solar Beam,Grass,Charge,Grotle Normal,Grass,
@@ -5107,6 +5345,8 @@ Solar Beam,Grass,Charge,Mew,Psychic,
 Solar Beam,Grass,Charge,Mew,Psychic,
 Solar Beam,Grass,Charge,Ninetales,Fire,
 Solar Beam,Grass,Charge,Ninetales Normal,Fire,
+Solar Beam,Grass,Charge,Ninetales Purified,Fire,
+Solar Beam,Grass,Charge,Ninetales Shadow,Fire,
 Solar Beam,Grass,Charge,Parasect,Bug,Grass
 Solar Beam,Grass,Charge,Porygon,Normal,
 Solar Beam,Grass,Charge,Porygon Normal,Normal,
@@ -5321,6 +5561,9 @@ Stone Edge,Rock,Charge,Tyranitar Purified,Rock,Dark
 Stone Edge,Rock,Charge,Tyranitar Shadow,Rock,Dark
 Stone Edge,Rock,Charge,Virizion,Grass,Fighting
 Struggle,Normal,Charge,Beldum,Steel,Psychic
+Struggle,Normal,Charge,Beldum Normal,Steel,Psychic
+Struggle,Normal,Charge,Beldum Purified,Steel,Psychic
+Struggle,Normal,Charge,Beldum Shadow,Steel,Psychic
 Struggle,Normal,Charge,Burmy,Bug,
 Struggle,Normal,Charge,Burmy Plant,Bug,
 Struggle,Normal,Charge,Burmy Sandy,Bug,
@@ -5386,6 +5629,9 @@ Sucker Punch,Dark,Fast,Gengar,Ghost,Poison
 Sucker Punch,Dark,Fast,Joltik,Bug,Electric
 Sucker Punch,Dark,Fast,Kecleon,Normal,
 Sucker Punch,Dark,Fast,Mismagius,Ghost,
+Sucker Punch,Dark,Fast,Mismagius Normal,Ghost,
+Sucker Punch,Dark,Fast,Mismagius Purified,Ghost,
+Sucker Punch,Dark,Fast,Mismagius Shadow,Ghost,
 Sucker Punch,Dark,Fast,Purrloin,Dark,
 Sucker Punch,Dark,Fast,Spinda,Normal,
 Sucker Punch,Dark,Fast,Spiritomb,Ghost,Dark
@@ -5393,6 +5639,9 @@ Super Power,Fighting,Charge,Gigalith,Rock,
 Super Power,Fighting,Charge,Hariyama,Fighting,
 Super Power,Fighting,Charge,Melmetal,Steel,
 Super Power,Fighting,Charge,Pinsir,Bug,
+Super Power,Fighting,Charge,Pinsir Normal,Bug,
+Super Power,Fighting,Charge,Pinsir Purified,Bug,
+Super Power,Fighting,Charge,Pinsir Shadow,Bug,
 Super Power,Fighting,Charge,Rhyperior,Ground,Rock
 Super Power,Fighting,Charge,Rhyperior Normal,Ground,Rock
 Super Power,Fighting,Charge,Rhyperior Purified,Ground,Rock
@@ -5605,6 +5854,9 @@ Tackle,Normal,Fast,Zigzagoon,Normal,
 Tackle,Normal,Fast,Zigzagoon Galarian,Dark,Normal
 Tackle,Normal,Fast,Zigzagoon Normal,Normal,
 Take Down,Normal,Fast,Beldum,Steel,Psychic
+Take Down,Normal,Fast,Beldum Normal,Steel,Psychic
+Take Down,Normal,Fast,Beldum Purified,Steel,Psychic
+Take Down,Normal,Fast,Beldum Shadow,Steel,Psychic
 Take Down,Normal,Fast,Bibarel,Normal,Water
 Take Down,Normal,Fast,Bidoof,Normal,
 Take Down,Normal,Fast,Cranidos,Rock,
@@ -5907,7 +6159,13 @@ Vice Grip,Normal,Charge,Krabby Normal,Water,
 Vice Grip,Normal,Charge,Krabby Purified,Water,
 Vice Grip,Normal,Charge,Krabby Shadow,Water,
 Vice Grip,Normal,Charge,Mawile,Steel,Fairy
+Vice Grip,Normal,Charge,Mawile Normal,Steel,Fairy
+Vice Grip,Normal,Charge,Mawile Purified,Steel,Fairy
+Vice Grip,Normal,Charge,Mawile Shadow,Steel,Fairy
 Vice Grip,Normal,Charge,Pinsir,Bug,
+Vice Grip,Normal,Charge,Pinsir Normal,Bug,
+Vice Grip,Normal,Charge,Pinsir Purified,Bug,
+Vice Grip,Normal,Charge,Pinsir Shadow,Bug,
 Vine Whip,Grass,Fast,Bellsprout,Grass,Poison
 Vine Whip,Grass,Fast,Bellsprout Normal,Grass,Poison
 Vine Whip,Grass,Fast,Bellsprout Purified,Grass,Poison
@@ -5998,7 +6256,13 @@ Water Gun,Water,Fast,Mudkip Purified,Water,
 Water Gun,Water,Fast,Mudkip Shadow,Water,
 Water Gun,Water,Fast,Octillery,Water,
 Water Gun,Water,Fast,Omanyte,Rock,Water
+Water Gun,Water,Fast,Omanyte Normal,Rock,Water
+Water Gun,Water,Fast,Omanyte Purified,Rock,Water
+Water Gun,Water,Fast,Omanyte Shadow,Rock,Water
 Water Gun,Water,Fast,Omastar,Rock,Water
+Water Gun,Water,Fast,Omastar Normal,Rock,Water
+Water Gun,Water,Fast,Omastar Purified,Rock,Water
+Water Gun,Water,Fast,Omastar Shadow,Rock,Water
 Water Gun,Water,Fast,Oshawott,Water,
 Water Gun,Water,Fast,Panpour,Water,
 Water Gun,Water,Fast,Pelipper,Water,Flying
@@ -6091,6 +6355,9 @@ Water Pulse,Water,Charge,Squirtle Normal,Water,
 Water Pulse,Water,Charge,Squirtle Purified,Water,
 Water Pulse,Water,Charge,Squirtle Shadow,Water,
 Water Pulse,Water,Charge,Suicune,Water,
+Water Pulse,Water,Charge,Suicune Normal,Water,
+Water Pulse,Water,Charge,Suicune Purified,Water,
+Water Pulse,Water,Charge,Suicune Shadow,Water,
 Water Pulse,Water,Charge,Tentacool,Water,Poison
 Water Pulse,Water,Charge,Totodile,Water,
 Water Pulse,Water,Charge,Tympole,Water,
@@ -6119,6 +6386,9 @@ Waterfall,Water,Fast,Phione,Water,
 Waterfall,Water,Fast,Samurott,Water,
 Waterfall,Water,Fast,Seaking,Water,
 Waterfall,Water,Fast,Sharpedo,Water,Dark
+Waterfall,Water,Fast,Sharpedo Normal,Water,Dark
+Waterfall,Water,Fast,Sharpedo Purified,Water,Dark
+Waterfall,Water,Fast,Sharpedo Shadow,Water,Dark
 Waterfall,Water,Fast,Walrein,Ice,Water
 Weather Ball Fire,Fire,Charge,Castform Sunny,Fire,
 Weather Ball Ice,Ice,Charge,Castform Snowy,Ice,
@@ -6231,7 +6501,7 @@ X Scissor,Bug,Charge,Genesect Douse,Bug,Steel
 X Scissor,Bug,Charge,Genesect Normal,Bug,Steel
 X Scissor,Bug,Charge,Genesect Shock,Bug,Steel
 X Scissor,Bug,Charge,Karrablast,Bug,
-X Scissor,Bug,Charge,Keldeo Ordinary,Water,Fighting
+X Scissor,Bug,Charge,Keldeo,Water,Fighting
 X Scissor,Bug,Charge,Keldeo Ordinary,Water,Fighting
 X Scissor,Bug,Charge,Keldeo Resolute,Water,Fighting
 X Scissor,Bug,Charge,Kingler,Water,
@@ -6244,6 +6514,9 @@ X Scissor,Bug,Charge,Paras,Bug,Grass
 X Scissor,Bug,Charge,Parasect,Bug,Grass
 X Scissor,Bug,Charge,Pawniard,Dark,Steel
 X Scissor,Bug,Charge,Pinsir,Bug,
+X Scissor,Bug,Charge,Pinsir Normal,Bug,
+X Scissor,Bug,Charge,Pinsir Purified,Bug,
+X Scissor,Bug,Charge,Pinsir Shadow,Bug,
 X Scissor,Bug,Charge,Scizor,Bug,Steel
 X Scissor,Bug,Charge,Scizor Normal,Bug,Steel
 X Scissor,Bug,Charge,Scizor Purified,Bug,Steel
@@ -6324,7 +6597,13 @@ Zen Headbutt,Psychic,Fast,Latios,Dragon,Psychic
 Zen Headbutt,Psychic,Fast,Lickilicky,Normal,
 Zen Headbutt,Psychic,Fast,Lickitung,Normal,
 Zen Headbutt,Psychic,Fast,Metagross,Steel,Psychic
+Zen Headbutt,Psychic,Fast,Metagross Normal,Steel,Psychic
+Zen Headbutt,Psychic,Fast,Metagross Purified,Steel,Psychic
+Zen Headbutt,Psychic,Fast,Metagross Shadow,Steel,Psychic
 Zen Headbutt,Psychic,Fast,Metang,Steel,Psychic
+Zen Headbutt,Psychic,Fast,Metang Normal,Steel,Psychic
+Zen Headbutt,Psychic,Fast,Metang Purified,Steel,Psychic
+Zen Headbutt,Psychic,Fast,Metang Shadow,Steel,Psychic
 Zen Headbutt,Psychic,Fast,Miltank,Normal,
 Zen Headbutt,Psychic,Fast,Mr Mime,Psychic,Fairy
 Zen Headbutt,Psychic,Fast,Munna,Psychic,
